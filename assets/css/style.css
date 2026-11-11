@@ -271,3 +271,21 @@ header.site,footer.site{position:relative;z-index:2}
 /* 3D tilt */
 .tilt{transform-style:preserve-3d;will-change:transform}
 .photo-frame{transform-style:preserve-3d}
+
+/* ---- Branding pack (added 2026-11-10, Komil: Amad wants a branding site) ---- */
+/* Brands-shaped strip: big outlined wordmarks scrolling under the hero */
+.brand-strip{background:#0b1119;padding:38px 0 30px;overflow:hidden}
+.brand-strip .eyebrow{justify-content:center;margin-bottom:20px}
+.brand-marquee{overflow:hidden;white-space:nowrap}
+.brand-marquee span{display:inline-block;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,56px);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px #43536a;animation:marquee 32s linear infinite;padding-right:40px}
+.brand-marquee span b{color:var(--lime);-webkit-text-stroke:0;font-weight:700}
+/* Manifesto statement */
+.manifesto{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,58px);line-height:1.12;letter-spacing:-.02em}
+.manifesto em{color:var(--lime-dark);font-style:normal}
+/* Brand palette swatches (brief tokens) */
+.palette-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:26px}
+.swatch{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#fff}
+.swatch i{display:block;height:110px}
+.swatch div{padding:14px 16px}
+.swatch b{display:block;font-size:15px}
+.swatch small{color:var(--muted);font-size:13px}

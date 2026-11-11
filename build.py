@@ -127,6 +127,9 @@ def write(rel, html):
 _HAS_PORTRAIT = (ROOT / "assets" / "img" / "portrait.jpg").exists()
 portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
 portrait_note = ('Photograph: Muhammad Amad.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad — this monogram is a design placeholder, not a photograph.')
+# About page portrait (same photo when present; note says where it came from)
+about_portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait" style="width:100%;height:220px;object-fit:cover;border-radius:14px">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
+about_portrait_note = ('Portrait: Muhammad Amad — LinkedIn profile photo for now; a professional portrait will replace it once he supplies one.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad.')
 home = f"""
 <section class="hero"><div class="wrap hero-grid"><div>
 <span class="eyebrow anim-in">Graphic Designer &amp; Creative Lead</span>
@@ -144,6 +147,7 @@ home = f"""
 <p class="portrait-note">{portrait_note}</p></div>
 </div></section>
 <div class="marquee"><span>Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦ Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦</span></div>
+<section class="brand-strip"><div class="wrap"><span class="eyebrow">Brands shaped</span></div><div class="brand-marquee"><span>Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦ Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦</span></div></section>
 <section class="light"><div class="wrap">
 <div class="sec-head"><div><span class="eyebrow">Selected Work</span><h2>Work that <em>speaks</em> on the shelf.</h2></div>
 <a class="btn btn-navy" href="work.html">All Work →</a></div>
@@ -160,6 +164,10 @@ home = f"""
 <div class="svc"><span class="num">05</span><h3>Creative Direction</h3><p>Direction across a project — concept, exploration, final artwork and rollout.</p></div>
 <div class="svc"><span class="num">06</span><h3>Design Education</h3><p>Teaching graphic design — practical workflow, honest critique and real project habits.</p></div>
 </div></div></section>
+<section class="white"><div class="wrap" style="max-width:920px">
+<p class="manifesto reveal">A brand is <em>remembered</em> when every touchpoint tells the same story.</p>
+<p class="lead" style="margin-top:18px">Logo, pack, feed, shelf — one idea, carried everywhere. That is the work.</p>
+</div></section>
 <section class="darksec"><div class="wrap two"><div>
 <span class="eyebrow">About</span><h2 style="font-size:clamp(32px,4vw,48px);margin-top:10px">A designer who teaches what he <em style="color:var(--lime);font-style:normal">practices.</em></h2>
 <p class="lead">I work on brand identity and packaging by day, and I teach design so the next designer starts further ahead than I did.</p>
@@ -217,7 +225,7 @@ write("index.html", page("Muhammad Amad — Graphic Designer & Creative Lead",
     "Muhammad Amad is a graphic designer and creative lead focused on brand identity, visual communication, and design education.", "home", home, dark_body=True, extra_head=HOME_SCHEMA))
 
 # ---------------------------------------------------------------- ABOUT
-about = """
+about = f"""
 <section class="light"><div class="wrap two"><div>
 <span class="eyebrow">About</span><h2 style="font-size:clamp(34px,5vw,56px);margin-top:10px">Design is how an idea becomes <em style="color:var(--lime-dark);font-style:normal">real.</em></h2>
 <p class="lead">I’m Muhammad Amad — a graphic designer and creative lead working on brand identity, packaging and campaigns, and teaching design alongside the work.</p>
@@ -225,8 +233,8 @@ about = """
 <p>As a teacher, I focus on workflow over shortcuts: how to approach a brand project, how to move from sketch to final design, and how to use AI as part of a designer’s process — not as a replacement for judgement.</p>
 <div class="note"><b>About this page:</b> every fact here follows Amad’s brief, which Amad has confirmed is correct. His portrait, CV PDF and final project artwork are placeholders until he supplies them — permission to publish the work is already given.</div>
 </div><div>
-<div class="portrait-card" style="min-height:320px"><div><div class="monogram">MA</div><div class="role">Muhammad Amad</div><p>Graphic Designer &amp; Creative Lead</p></div>
-<p class="portrait-note">Professional portrait to be supplied by Amad.</p></div>
+<div class="portrait-card" style="min-height:320px"><div>{about_portrait_inner}<div class="role" style="margin-top:14px">Muhammad Amad</div><p>Graphic Designer &amp; Creative Lead</p></div>
+<p class="portrait-note">{about_portrait_note}</p></div>
 <div class="card" style="margin-top:20px"><h3>Tools I use</h3><p style="color:var(--muted)">Adobe Photoshop · Adobe Illustrator</p>
 <h3 style="margin-top:20px">Capabilities</h3><p style="color:var(--muted)">Brand identity · Graphic design · Packaging · Campaign visuals · Creative direction · Teaching &amp; mentoring</p></div>
 </div></div></section>
@@ -238,6 +246,14 @@ about = """
 <div><span class="when">2021 – 2025</span><h3>BS Information Technology — University of Agriculture Peshawar</h3><p>Undergraduate degree, 2021–2025.</p></div>
 <div><span class="when">Training</span><h3>Graphic Design and UI/UX Design — SMIT Peshawar</h3><p>Training / certificates — exact certificate names to be supplied by Amad.</p></div>
 <div><span class="when">2022 – 2023</span><h3>Diploma in Graphic Design — Saylani Welfare</h3><p>Jan 2022 – Dec 2023 · Grade A.</p></div>
+</div></div></section>
+<section class="white"><div class="wrap"><div class="sec-head"><div><span class="eyebrow">Brand Palette</span><h2>The colours this <em>site</em> is built on.</h2></div></div>
+<p class="lead" style="max-width:640px">The palette comes from the brief's own design tokens — the same dark, navy and lime that run through this website.</p>
+<div class="palette-grid">
+<div class="swatch reveal"><i style="background:#111820"></i><div><b>Studio Dark</b><small>#111820 — backgrounds, hero</small></div></div>
+<div class="swatch reveal"><i style="background:#142B4D"></i><div><b>Deep Navy</b><small>#142B4D — cards, depth</small></div></div>
+<div class="swatch reveal"><i style="background:#B7FE5D"></i><div><b>Signal Lime</b><small>#B7FE5D — accents, calls to action</small></div></div>
+<div class="swatch reveal"><i style="background:#F5F6F3;border-bottom:1px solid var(--border)"></i><div><b>Paper Light</b><small>#F5F6F3 — light sections</small></div></div>
 </div></div></section>
 <section class="light"><div class="wrap" style="text-align:center">
 <h2>Want to work together?</h2><p class="lead">See the work, then send an inquiry.</p>
