@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2) Magnetic buttons — CTAs drift toward the cursor, snap back on leave.
   if (finePointer && !reduced) {
-    document.querySelectorAll('.hero-ctas .btn, .nav-cta, .btn-lime').forEach(btn => {
+    document.querySelectorAll('.hero .btn, .nav-cta, .btn-lime').forEach(btn => {
       btn.classList.add('magnetic');
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
@@ -150,11 +150,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.work-card').forEach(card => cio.observe(card));
   }
 
-  // 6) Hero parallax — headline column + portrait frame drift apart subtly.
+  // 6) Hero parallax — headline + portrait photo drift apart subtly.
+  // (Targets the h1 and the portrait img: the portrait frame itself carries
+  // the entrance animation, whose fill would override an inline transform.)
   if (finePointer && !reduced) {
     const hero = document.querySelector('.hero');
-    const leftCol = hero && hero.querySelector('.hero-grid > div:first-child');
-    const frame = hero && hero.querySelector('.photo-frame');
+    const leftCol = hero && hero.querySelector('.hero-center h1');
+    const frame = hero && hero.querySelector('.hero-portrait img');
     if (hero && (leftCol || frame)) {
       let mx = 0, my = 0, cx = 0, cy = 0;
       hero.addEventListener('mousemove', e => {
@@ -165,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
       hero.addEventListener('mouseleave', () => { mx = 0; my = 0; });
       (function ploop() {
         cx += (mx - cx) * 0.06; cy += (my - cy) * 0.06;
-        if (leftCol) leftCol.style.transform = 'translate(' + (cx * -10).toFixed(1) + 'px,' + (cy * -8).toFixed(1) + 'px)';
-        if (frame) frame.style.transform = 'translate(' + (cx * 14).toFixed(1) + 'px,' + (cy * 10).toFixed(1) + 'px)';
+        if (leftCol) leftCol.style.transform = 'translate(' + (cx * -8).toFixed(1) + 'px,' + (cy * -6).toFixed(1) + 'px)';
+        if (frame) frame.style.transform = 'translate(' + (cx * 10).toFixed(1) + 'px,' + (cy * 8).toFixed(1) + 'px) scale(1.06)';
         requestAnimationFrame(ploop);
       })();
     }

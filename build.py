@@ -133,21 +133,16 @@ portrait_note = ('Photograph: Muhammad Amad.' if _HAS_PORTRAIT else 'Professiona
 about_portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait" style="width:100%;height:220px;object-fit:cover;border-radius:14px">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
 about_portrait_note = ('Portrait: Muhammad Amad — LinkedIn profile photo for now; a professional portrait will replace it once he supplies one.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad.')
 home = f"""
-<section class="hero"><canvas id="hero-canvas"></canvas><div class="wrap hero-grid"><div>
-<span class="eyebrow anim-in">Graphic Designer &amp; Creative Lead</span>
+<section class="hero"><canvas id="hero-canvas"></canvas><div class="wrap hero-center">
+<span class="avail-badge anim-in"><i></i>Available for new projects</span>
 <h1><span class="hl"><span>Designing <em>identities.</em></span></span><span class="hl"><span>Building <span class="outline">ideas.</span></span></span><span class="hl"><span>Empowering <em>creatives.</em></span></span></h1>
-<p class="hero-sub anim-in" style="animation-delay:.45s">I’m Muhammad Amad, a graphic designer and creative lead focused on brand identity, visual communication, and design education.</p>
 <p class="roll-line anim-in" style="animation-delay:.5s"><span class="roll-label">Designing</span> <span class="roll-words"><span class="roll-track"><span>Brand Identities</span><span>Packaging</span><span>Campaign Design</span><span>Creative Direction</span><span>Design Education</span><span>Brand Identities</span></span></span></p>
-<div class="hero-ctas anim-in" style="animation-delay:.55s"><a class="btn btn-lime" href="work.html">Explore My Work →</a>
-<a class="btn btn-ghost" href="contact.html">Let’s Connect</a></div>
-<div class="hero-meta anim-in" style="animation-delay:.7s"><span class="pill">Senior Graphic Designer — Markhor Group</span>
-<span class="pill">Graphics Lead — TechKhwa (Remote)</span>
-<span class="pill">Peshawar, Pakistan</span>
-<span class="pill">BS Information Technology</span></div>
+<div class="hero-portrait anim-in" style="animation-delay:.6s">{portrait_inner}</div>
+<div class="hero-bottom anim-in" style="animation-delay:.7s">
+<div class="hero-intro"><p>Brand identity, packaging and campaigns — designed to stand out on the shelf and in the feed.</p><a class="btn btn-white" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a></div>
+<div class="hero-stat"><strong>4 <b>brands</b></strong><span>Markhor brands shaped — Cola · King · Energy · Ginseng</span></div>
 </div>
-<div class="portrait-card"><div class="photo-frame">{portrait_inner}<span class="photo-chip chip-a"><i>●</i>Senior Designer — Markhor</span><span class="photo-chip chip-b"><i>●</i>Graphics Lead — TechKhwa</span></div>
-<div><div class="role">Muhammad Amad</div><p>Brand identity · Packaging · Campaigns · Creative direction · Design education</p></div>
-<p class="portrait-note">{portrait_note}</p></div>
+<div class="hero-strip anim-in" style="animation-delay:.8s"><span><b>≈ 4 years</b> designing</span><span class="sep">✦</span><span>Senior Designer — <b>Markhor Group</b></span><span class="sep">✦</span><span>Graphics Lead — <b>TechKhwa</b></span></div>
 </div></section>
 <div class="marquee"><span>Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦ Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦</span></div>
 <section class="brand-strip"><div class="wrap"><span class="eyebrow">Brands shaped</span></div><div class="brand-marquee"><span>Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦ Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦</span></div></section>
@@ -525,6 +520,13 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   mid-flight (frozen half-risen words) — that is a screenshot-timing artifact, NOT
   a site bug. Verified via CDP after 7 real seconds: word transform is identity,
   hero-sub opacity 1, all 6 words + full headline present.
+- Hero v2 (2026-11-10, Zara-style reference screenshot from Komil): centered
+  layout — floating pill header, framed hero with drifting green light beams,
+  'Available for new projects' badge, big centered portrait with bottom fade,
+  intro left + '4 brands' stat right, stats strip (≈4 years / Markhor Group /
+  TechKhwa — all real facts, NO invented client counts or satisfaction rates:
+  the reference's '56+ happy clients' / '96%' were NOT copied). Headline kept
+  as the brief-approved one; portrait is the LinkedIn photo (temporary).
 
 ## Run locally / deploy
 ```bash

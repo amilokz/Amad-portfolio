@@ -48,6 +48,13 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   mid-flight (frozen half-risen words) — that is a screenshot-timing artifact, NOT
   a site bug. Verified via CDP after 7 real seconds: word transform is identity,
   hero-sub opacity 1, all 6 words + full headline present.
+- Hero v2 (2026-11-10, Zara-style reference screenshot from Komil): centered
+  layout — floating pill header, framed hero with drifting green light beams,
+  'Available for new projects' badge, big centered portrait with bottom fade,
+  intro left + '4 brands' stat right, stats strip (≈4 years / Markhor Group /
+  TechKhwa — all real facts, NO invented client counts or satisfaction rates:
+  the reference's '56+ happy clients' / '96%' were NOT copied). Headline kept
+  as the brief-approved one; portrait is the LinkedIn photo (temporary).
 
 ## Run locally / deploy
 ```bash
