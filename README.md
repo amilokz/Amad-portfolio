@@ -60,8 +60,8 @@ The brief governs all facts on the site — Amad confirmed the brief is correct
   WebApplication + FAQPage schema on each tool page.
 - Unique title + meta description on every page; Open Graph image
   `assets/img/og-image.png` (1200×630, drawn, no photo); `robots.txt` + `sitemap.xml`
-  (placeholder domain `muhammadamad.example` — update to the live Vercel URL on deploy,
-  then to the custom domain later).
+  (live domain `https://amad-portfolio-psi.vercel.app` since 2026-11-10;
+  update again when Amad's custom domain connects).
 - FAQ section on the home page; internal links: home → tools, tools → work/contact/academy.
 - After the Vercel deploy: verify the live site in Google Search Console, submit the
   sitemap, and request indexing for the home page + the 3 tool pages.
@@ -88,8 +88,20 @@ Built instead — the soft spots:
 All three run 100% client-side (`assets/js/tools.js`, syntax-checked with node).
 No sign-up, nothing uploaded. Each tool page has guide content + FAQ, per the SEO note above.
 
+## Motion (added 2026-11-10 — hero felt static, marquee did not move, cards had no life)
+- Hero: headline lines rise out of a mask one after another; eyebrow, sub, CTAs and
+  pills fade up in sequence; slow lime glow drifts behind the headline.
+- Marquee: now actually scrolls (26s loop; text duplicated for a seamless wrap).
+- Scroll reveal: work cards, services, steps, courses, timeline, FAQ and tool panels
+  fade up via IntersectionObserver in `assets/js/main.js` (class added by JS only,
+  so no-JS never hides content). `prefers-reduced-motion` disables all motion.
+- Cards: hover lift + lime border; work-cover artwork zooms slightly on hover.
+- Hero portrait slot: the portrait card is a photo frame. Drop Amad's real photo at
+  `assets/img/portrait.jpg` and rebuild — it replaces the MA monogram automatically
+  (build.py checks for the file). Until then the monogram + floating role chips show.
+
 ## Editing content
 Edit `build.py` (content + page templates) and re-run it — or edit the generated
 `.html` files directly. Shared styles: `assets/css/style.css`. Shared behaviour:
-`assets/js/main.js` (mobile nav, work filters, demo forms).
+`assets/js/main.js` (mobile nav, work filters, demo forms, scroll reveal).
 Tool logic: `assets/js/tools.js` (estimator, label finder, preflight checker).

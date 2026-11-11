@@ -31,4 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Footer year
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+  // Scroll reveal — cards and sections fade up as they enter view.
+  // The .reveal class is added here (not in the HTML), so no-JS never hides content.
+  const revealEls = document.querySelectorAll('.work-card,.svc,.step,.course,.timeline>div,.card,details.faq,.tool-panel,.result,.sec-head');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = ((i % 4) * 70) + 'ms';
+    io.observe(el);
+  });
 });

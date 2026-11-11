@@ -59,7 +59,7 @@ def page(title, desc, active, body, dark_body=False, extra_head=""):
 <title>{title} — Muhammad Amad</title><meta name="description" content="{desc}">
 <meta property="og:title" content="{title} — Muhammad Amad">
 <meta property="og:description" content="{desc}"><meta property="og:type" content="website">
-<meta property="og:image" content="https://muhammadamad.example/assets/img/og-image.png">
+<meta property="og:image" content="https://amad-portfolio-psi.vercel.app/assets/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 {PERSON_JSONLD}{extra_head}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,21 +122,26 @@ def write(rel, html):
     print("wrote", rel)
 
 # ---------------------------------------------------------------- HOME
+# Hero portrait: drop Amad's real photo at assets/img/portrait.jpg and rebuild —
+# it replaces the MA monogram automatically. Until then the monogram shows.
+_HAS_PORTRAIT = (ROOT / "assets" / "img" / "portrait.jpg").exists()
+portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
+portrait_note = ('Photograph: Muhammad Amad.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad — this monogram is a design placeholder, not a photograph.')
 home = f"""
 <section class="hero"><div class="wrap hero-grid"><div>
-<span class="eyebrow">Graphic Designer &amp; Creative Lead</span>
-<h1>Designing <em>identities.</em><br>Building <span class="outline">ideas.</span><br>Empowering <em>creatives.</em></h1>
-<p class="hero-sub">I’m Muhammad Amad, a graphic designer and creative lead focused on brand identity, visual communication, and design education.</p>
-<div class="hero-ctas"><a class="btn btn-lime" href="work.html">Explore My Work →</a>
+<span class="eyebrow anim-in">Graphic Designer &amp; Creative Lead</span>
+<h1><span class="hl"><span>Designing <em>identities.</em></span></span><span class="hl"><span>Building <span class="outline">ideas.</span></span></span><span class="hl"><span>Empowering <em>creatives.</em></span></span></h1>
+<p class="hero-sub anim-in" style="animation-delay:.45s">I’m Muhammad Amad, a graphic designer and creative lead focused on brand identity, visual communication, and design education.</p>
+<div class="hero-ctas anim-in" style="animation-delay:.55s"><a class="btn btn-lime" href="work.html">Explore My Work →</a>
 <a class="btn btn-ghost" href="contact.html">Let’s Connect</a></div>
-<div class="hero-meta"><span class="pill">Senior Graphic Designer — Markhor Group</span>
+<div class="hero-meta anim-in" style="animation-delay:.7s"><span class="pill">Senior Graphic Designer — Markhor Group</span>
 <span class="pill">Graphics Lead — TechKhwa (Remote)</span>
 <span class="pill">Peshawar, Pakistan</span>
 <span class="pill">BS Information Technology</span></div>
 </div>
-<div class="portrait-card"><div><div class="monogram">MA</div>
-<div class="role">Muhammad Amad</div><p>Brand identity · Packaging · Campaigns · Creative direction · Design education</p></div>
-<p class="portrait-note">Professional portrait to be supplied by Amad — this monogram is a design placeholder, not a photograph.</p></div>
+<div class="portrait-card"><div class="photo-frame">{portrait_inner}<span class="photo-chip chip-a"><i>●</i>Senior Designer — Markhor</span><span class="photo-chip chip-b"><i>●</i>Graphics Lead — TechKhwa</span></div>
+<div><div class="role">Muhammad Amad</div><p>Brand identity · Packaging · Campaigns · Creative direction · Design education</p></div>
+<p class="portrait-note">{portrait_note}</p></div>
 </div></section>
 <div class="marquee"><span>Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦ Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦</span></div>
 <section class="light"><div class="wrap">
@@ -206,7 +211,7 @@ home = f"""
 <a class="btn btn-ghost" href="https://www.linkedin.com/in/muhammad-amad7/" target="_blank" rel="noopener">LinkedIn ↗</a>
 </div></section>
 """
-HOME_SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Muhammad Amad","url":"https://muhammadamad.example/","author":{"@type":"Person","name":"Muhammad Amad"}}</script>
+HOME_SCHEMA = """<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Muhammad Amad","url":"https://amad-portfolio-psi.vercel.app/","author":{"@type":"Person","name":"Muhammad Amad"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What services does Muhammad Amad offer?","acceptedAnswer":{"@type":"Answer","text":"Brand identity, graphic design, packaging, campaign design, creative direction, and design education — for businesses in Pakistan and abroad."}},{"@type":"Question","name":"Where is Muhammad Amad based?","acceptedAnswer":{"@type":"Answer","text":"In Peshawar, Pakistan. He works as Senior Graphic Designer at Markhor Group of Companies and as Graphics Lead at TechKhwa (remote)."}},{"@type":"Question","name":"Are the free tools really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The cost estimator, label size finder and preflight checker all run entirely in your browser. No sign-up, no account, and nothing you enter is uploaded or stored."}},{"@type":"Question","name":"How do I get an exact price for my project?","acceptedAnswer":{"@type":"Answer","text":"Use the free cost estimator for an indicative PKR market range, then send an inquiry through the contact page — every project gets an exact written quote."}}]}</script>"""
 write("index.html", page("Muhammad Amad — Graphic Designer & Creative Lead",
     "Muhammad Amad is a graphic designer and creative lead focused on brand identity, visual communication, and design education.", "home", home, dark_body=True, extra_head=HOME_SCHEMA))
@@ -444,10 +449,10 @@ notfound = """
 write("404.html", page("Page Not Found — Muhammad Amad", "The page you’re looking for doesn’t exist.", "home", notfound, dark_body=True))
 
 # ---------------------------------------------------------------- STATIC FILES
-(ROOT / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://muhammadamad.example/sitemap.xml\n", encoding="utf-8")
+(ROOT / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://amad-portfolio-psi.vercel.app/sitemap.xml\n", encoding="utf-8")
 (ROOT / "sitemap.xml").write_text("""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-""" + "".join(f"  <url><loc>https://muhammadamad.example/{p}</loc></url>\n" for p in
+""" + "".join(f"  <url><loc>https://amad-portfolio-psi.vercel.app/{p}</loc></url>\n" for p in
 ["", "about.html", "work.html", "academy.html", "insights.html", "contact.html", "cv.html", "privacy.html", "terms.html",
  "tools/index.html", "tools/design-cost-estimator.html", "tools/label-size-finder.html", "tools/print-preflight-checker.html"]) + "</urlset>\n", encoding="utf-8")
 
@@ -513,8 +518,8 @@ The brief governs all facts on the site — Amad confirmed the brief is correct
   WebApplication + FAQPage schema on each tool page.
 - Unique title + meta description on every page; Open Graph image
   `assets/img/og-image.png` (1200×630, drawn, no photo); `robots.txt` + `sitemap.xml`
-  (placeholder domain `muhammadamad.example` — update to the live Vercel URL on deploy,
-  then to the custom domain later).
+  (live domain `https://amad-portfolio-psi.vercel.app` since 2026-11-10;
+  update again when Amad's custom domain connects).
 - FAQ section on the home page; internal links: home → tools, tools → work/contact/academy.
 - After the Vercel deploy: verify the live site in Google Search Console, submit the
   sitemap, and request indexing for the home page + the 3 tool pages.
@@ -541,10 +546,22 @@ Built instead — the soft spots:
 All three run 100% client-side (`assets/js/tools.js`, syntax-checked with node).
 No sign-up, nothing uploaded. Each tool page has guide content + FAQ, per the SEO note above.
 
+## Motion (added 2026-11-10 — hero felt static, marquee did not move, cards had no life)
+- Hero: headline lines rise out of a mask one after another; eyebrow, sub, CTAs and
+  pills fade up in sequence; slow lime glow drifts behind the headline.
+- Marquee: now actually scrolls (26s loop; text duplicated for a seamless wrap).
+- Scroll reveal: work cards, services, steps, courses, timeline, FAQ and tool panels
+  fade up via IntersectionObserver in `assets/js/main.js` (class added by JS only,
+  so no-JS never hides content). `prefers-reduced-motion` disables all motion.
+- Cards: hover lift + lime border; work-cover artwork zooms slightly on hover.
+- Hero portrait slot: the portrait card is a photo frame. Drop Amad's real photo at
+  `assets/img/portrait.jpg` and rebuild — it replaces the MA monogram automatically
+  (build.py checks for the file). Until then the monogram + floating role chips show.
+
 ## Editing content
 Edit `build.py` (content + page templates) and re-run it — or edit the generated
 `.html` files directly. Shared styles: `assets/css/style.css`. Shared behaviour:
-`assets/js/main.js` (mobile nav, work filters, demo forms).
+`assets/js/main.js` (mobile nav, work filters, demo forms, scroll reveal).
 Tool logic: `assets/js/tools.js` (estimator, label finder, preflight checker).
 """, encoding="utf-8")
 print("wrote robots.txt, sitemap.xml, README.md")
