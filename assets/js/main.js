@@ -235,13 +235,16 @@ document.addEventListener('DOMContentLoaded', () => {
   (function () {
     const strip = document.querySelector('.brand-marquee span');
     if (!strip || reduced) return;
-    const half = () => strip.scrollWidth / 2;
+    // 4 identical copies in the span: one copy = scrollWidth / 4. The old
+    // /2 wrap left the right side empty at the wrap point (one copy is
+    // narrower than a wide viewport) and drifted 20px per wrap.
+    const copy = () => strip.scrollWidth / 4;
     let x = 0, dragging = false, startX = 0, startOffset = 0;
     const parent = strip.closest('.brand-strip');
     function tick() {
       if (!dragging) {
         x -= 0.6;
-        if (x <= -half()) x += half();
+        if (x <= -copy()) x += copy();
         strip.style.transform = 'translateX(' + x.toFixed(1) + 'px)';
       }
       requestAnimationFrame(tick);
@@ -260,8 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
       dragging = false;
       parent.classList.remove('dragging');
       // wrap back into the seamless range
-      while (x <= -half()) x += half();
-      while (x > 0) x -= half();
+      while (x <= -copy()) x += copy();
+      while (x > 0) x -= copy();
     });
     requestAnimationFrame(tick);
   })();

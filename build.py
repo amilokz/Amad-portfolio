@@ -144,8 +144,8 @@ home = f"""
 </div>
 <div class="hero-strip anim-in" style="animation-delay:.8s"><span><b>≈ 4 years</b> designing</span><span class="sep">✦</span><span>Senior Designer — <b>Markhor Group</b></span><span class="sep">✦</span><span>Graphics Lead — <b>TechKhwa</b></span></div>
 </div></section>
-<div class="marquee"><span>Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦ Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦</span></div>
-<section class="brand-strip"><div class="wrap"><span class="eyebrow">Brands shaped</span></div><div class="brand-marquee"><span>Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦ Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦</span></div></section>
+<div class="marquee"><span>Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦ Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦ Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦ Brand Identity ✦ Packaging ✦ Campaign Design ✦ Creative Direction ✦ Design Education ✦</span></div>
+<section class="brand-strip"><div class="wrap"><span class="eyebrow">Brands shaped</span></div><div class="brand-marquee"><span>Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦ Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦ Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦ Markhor Cola ✦ <b>Markhor King</b> ✦ Markhor Energy Drink ✦ <b>Markhor Ginseng</b> ✦ TechKhwa ✦ <b>Markhor Group</b> ✦</span></div></section>
 <section class="light"><div class="wrap">
 <div class="sec-head"><div><span class="eyebrow">Selected Work</span><h2>Work that <em>speaks</em> on the shelf.</h2></div>
 <a class="btn btn-navy" href="work.html">All Work →</a></div>
@@ -527,6 +527,13 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   TechKhwa — all real facts, NO invented client counts or satisfaction rates:
   the reference's '56+ happy clients' / '96%' were NOT copied). Headline kept
   as the brief-approved one; portrait is the LinkedIn photo (temporary).
+- Marquee fix + clean portrait (2026-11-10, Komil: marquee ends with empty space;
+  photo must be a clean image, no box/card — thebuildr.framer.website): the old
+  2-copy / -50% marquee ended each cycle with a wide empty band (one copy was
+  narrower than the viewport) — now 4 identical copies, -25% shift, no
+  padding on the animated span; brands slider wrap changed from scrollWidth/2
+  to scrollWidth/4. Portrait box removed entirely (no radius/border/shadow);
+  the photo's edges melt into the hero via a radial mask — clean cutout look.
 
 ## Run locally / deploy
 ```bash

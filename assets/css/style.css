@@ -60,7 +60,7 @@ header.site{position:sticky;top:0;z-index:50;background:rgba(17,24,32,.92);backd
 .portrait-note{font-size:13px;color:#8fa0b3;border-top:1px solid var(--darkline);padding-top:16px}
 /* Marquee */
 .marquee{background:var(--lime);color:#12200a;overflow:hidden;padding:14px 0;font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
-.marquee span{display:inline-block;padding-right:48px}
+.marquee span{display:inline-block}
 /* Sections */
 section{padding:76px 0}
 section.light{background:var(--light)}
@@ -209,6 +209,9 @@ details.faq p{color:var(--muted);margin:10px 0 0}
 @keyframes rise{from{transform:translateY(110%)}to{transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 @keyframes marquee{to{transform:translateX(-50%)}}
+/* 4-copy marquees shift by exactly one copy (-25%); -50% on a 2-copy span
+   left the right side of wide screens empty at the end of each cycle. */
+@keyframes marquee4{to{transform:translateX(-25%)}}
 @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes drift{from{transform:translate(0,0)}to{transform:translate(60px,40px)}}
 @keyframes shine{from{transform:translateX(-120%) skewX(-18deg)}to{transform:translateX(240%) skewX(-18deg)}}
@@ -219,8 +222,10 @@ details.faq p{color:var(--muted);margin:10px 0 0}
 .hl:nth-child(3)>span{animation-delay:.24s}
 .anim-in{opacity:0;animation:fadeUp .8s ease forwards}
 .hero::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(183,254,93,.16),transparent 65%);top:-180px;left:-140px;animation:drift 14s ease-in-out infinite alternate;pointer-events:none}
-/* Marquee actually moves now (it was static before) */
-.marquee span{animation:marquee 26s linear infinite}
+/* Marquee actually moves now (it was static before). 4 copies, -25% shift:
+   the old 2-copy / -50% run ended each cycle with an empty band on the
+   right of wide screens (one copy was narrower than the viewport). */
+.marquee span{animation:marquee4 26s linear infinite}
 /* Hero portrait: photo slot + floating chips */
 .portrait-card{animation:floaty 7s ease-in-out infinite}
 .photo-frame{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(150deg,#1b3a66,#0d1a2e);min-height:250px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
@@ -277,7 +282,7 @@ header.site,footer.site{position:relative;z-index:2}
 .brand-strip{background:#0b1119;padding:38px 0 30px;overflow:hidden}
 .brand-strip .eyebrow{justify-content:center;margin-bottom:20px}
 .brand-marquee{overflow:hidden;white-space:nowrap}
-.brand-marquee span{display:inline-block;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,56px);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px #43536a;animation:marquee 32s linear infinite;padding-right:40px}
+.brand-marquee span{display:inline-block;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,4.4vw,56px);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px #43536a;animation:marquee 32s linear infinite}
 .brand-marquee span b{color:var(--lime);-webkit-text-stroke:0;font-weight:700}
 /* Manifesto statement */
 .manifesto{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(30px,4.6vw,58px);line-height:1.12;letter-spacing:-.02em}
@@ -373,9 +378,11 @@ header.site{position:sticky;top:14px;z-index:50;max-width:1120px;margin:14px aut
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(183,254,93,.45)}55%{box-shadow:0 0 0 7px rgba(183,254,93,0)}}
 .hero-center h1{margin:26px 0 0}
 .hero-center .roll-line{margin-top:22px}
-.hero-portrait{position:relative;width:min(460px,86vw);margin:44px auto 0;border-radius:28px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.08)}
-.hero-portrait img{display:block;width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:center 18%}
-.hero-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 52%,rgba(17,24,32,.5) 82%,var(--bg) 100%);pointer-events:none}
+/* Clean image, NO box/card (Komil 2026-11-10, thebuildr reference): no
+   radius, no border, no shadow — the photo's edges melt into the hero
+   background via a radial mask, like the reference's cutout portrait. */
+.hero-portrait{position:relative;width:min(460px,86vw);margin:44px auto 0}
+.hero-portrait img{display:block;width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:center 18%;-webkit-mask-image:radial-gradient(ellipse 92% 86% at 50% 42%,#000 58%,transparent 97%);mask-image:radial-gradient(ellipse 92% 86% at 50% 42%,#000 58%,transparent 97%)}
 .hero-portrait .monogram{display:grid;place-items:center;min-height:420px}
 .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;text-align:left;margin-top:40px}
 .hero-intro p{max-width:430px;color:#b9c4d0;font-size:17px;line-height:1.6;margin:0 0 20px}
