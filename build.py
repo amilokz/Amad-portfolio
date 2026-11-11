@@ -19,7 +19,7 @@ NAV = [
 
 def header(active=""):
     links = "".join(
-        f'<a href="{href}" class="{"active" if label.lower() == active else ""}">{label}</a>'
+        f'<a href="{href}" data-text="{label}" class="{"active" if label.lower() == active else ""}">{label}</a>'
         for label, href in NAV)
     return f"""<header class="site"><nav class="nav">
 <a class="wordmark" href="index.html">Muhammad <span>Amad</span></a>
@@ -476,6 +476,19 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
 `work/markhor-cola`, `work/markhor-king`, `work/markhor-energy-drink`, `work/markhor-ginseng`,
 `academy` (interest registration only — no LMS/payments), `insights` (planned topics only),
 `contact` (inquiry form), `cv` (web CV + print-to-PDF), `privacy`, `terms`, `404`.
+
+## Motion (added 2026-11-10)
+- Hero: headline words rise + rotate in one by one (staggered), drifting lime glow,
+  scrolling marquee, floating portrait card with role chips.
+- AnimMaster-style pack: magnetic buttons, cursor glow (desktop mouse only),
+  3D tilt on work cards + portrait, nav-link roll, clip-path cover reveal,
+  hero parallax, scroll-reveal everywhere. All vanilla CSS/JS, no dependency;
+  `prefers-reduced-motion` disables it. NOTE: animmasterlib.dev is a PAID pack
+  ($4.99 PRO / $8 Premium) — its code was NOT copied; these are original
+  implementations of the same effect families. If the pack is ever bought, its
+  real components can be integrated instead.
+- Hero portrait slot: drop Amad's photo at `assets/img/portrait.jpg` and rebuild —
+  build.py emits the real `<img>` when the file exists, otherwise the MA monogram.
 
 ## Run locally / deploy
 ```bash
