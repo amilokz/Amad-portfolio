@@ -539,6 +539,12 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   padding on the animated span; brands slider wrap changed from scrollWidth/2
   to scrollWidth/4. Portrait box removed entirely (no radius/border/shadow);
   the photo's edges melt into the hero via a radial mask — clean cutout look.
+- REAL CUTOUT (2026-11-10, Komil: the green backdrop STILL showed as a card —
+  mask alone could not hide the bright rectangle): background actually REMOVED
+  with rembg (u2netp model, venv ~/workspace/.venvs/rembg — the full 1.02G
+  default model OOM-killed the VM, the tiny 4.57MB u2netp worked). Hero now
+  uses assets/img/portrait-cutout.png (400x400 RGBA, 123KB); About keeps the
+  full JPG in its card. CSS mask is now only a gentle bottom fade.
 
 ## Run locally / deploy
 ```bash
