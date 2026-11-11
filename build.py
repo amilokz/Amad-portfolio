@@ -133,10 +133,11 @@ portrait_note = ('Photograph: Muhammad Amad.' if _HAS_PORTRAIT else 'Professiona
 about_portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait" style="width:100%;height:220px;object-fit:cover;border-radius:14px">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
 about_portrait_note = ('Portrait: Muhammad Amad — LinkedIn profile photo for now; a professional portrait will replace it once he supplies one.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad.')
 home = f"""
-<section class="hero"><div class="wrap hero-grid"><div>
+<section class="hero"><canvas id="hero-canvas"></canvas><div class="wrap hero-grid"><div>
 <span class="eyebrow anim-in">Graphic Designer &amp; Creative Lead</span>
 <h1><span class="hl"><span>Designing <em>identities.</em></span></span><span class="hl"><span>Building <span class="outline">ideas.</span></span></span><span class="hl"><span>Empowering <em>creatives.</em></span></span></h1>
 <p class="hero-sub anim-in" style="animation-delay:.45s">I’m Muhammad Amad, a graphic designer and creative lead focused on brand identity, visual communication, and design education.</p>
+<p class="roll-line anim-in" style="animation-delay:.5s"><span class="roll-label">Designing</span> <span class="roll-words"><span class="roll-track"><span>Brand Identities</span><span>Packaging</span><span>Campaign Design</span><span>Creative Direction</span><span>Design Education</span><span>Brand Identities</span></span></span></p>
 <div class="hero-ctas anim-in" style="animation-delay:.55s"><a class="btn btn-lime" href="work.html">Explore My Work →</a>
 <a class="btn btn-ghost" href="contact.html">Let’s Connect</a></div>
 <div class="hero-meta anim-in" style="animation-delay:.7s"><span class="pill">Senior Graphic Designer — Markhor Group</span>
@@ -159,12 +160,12 @@ home = f"""
 <section class="white"><div class="wrap">
 <div class="sec-head"><div><span class="eyebrow">What I Do</span><h2>From idea to <em>identity.</em></h2></div></div>
 <div class="svc-grid">
-<div class="svc"><span class="num">01</span><h3>Brand Identity</h3><p>Logos, visual systems and guidelines that make a brand recognisable at a glance.</p></div>
-<div class="svc"><span class="num">02</span><h3>Graphic Design</h3><p>Clear, confident visuals for print, social and everyday brand touchpoints.</p></div>
-<div class="svc"><span class="num">03</span><h3>Packaging</h3><p>Labels and packs designed to stand out on a real shelf — and read clearly in hand.</p></div>
-<div class="svc"><span class="num">04</span><h3>Campaign Design</h3><p>Campaign visuals and sponsorship creative that carry one idea across every format.</p></div>
-<div class="svc"><span class="num">05</span><h3>Creative Direction</h3><p>Direction across a project — concept, exploration, final artwork and rollout.</p></div>
-<div class="svc"><span class="num">06</span><h3>Design Education</h3><p>Teaching graphic design — practical workflow, honest critique and real project habits.</p></div>
+<div class="svc"><div class="svc-top"><span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><span class="num">01</span></div><h3>Brand Identity</h3><p>Logos, visual systems and guidelines that make a brand recognisable at a glance.</p></div>
+<div class="svc"><div class="svc-top"><span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><span class="num">02</span></div><h3>Graphic Design</h3><p>Clear, confident visuals for print, social and everyday brand touchpoints.</p></div>
+<div class="svc"><div class="svc-top"><span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4L7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg></span><span class="num">03</span></div><h3>Packaging</h3><p>Labels and packs designed to stand out on a real shelf — and read clearly in hand.</p></div>
+<div class="svc"><div class="svc-top"><span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="num">04</span></div><h3>Campaign Design</h3><p>Campaign visuals and sponsorship creative that carry one idea across every format.</p></div>
+<div class="svc"><div class="svc-top"><span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><span class="num">05</span></div><h3>Creative Direction</h3><p>Direction across a project — concept, exploration, final artwork and rollout.</p></div>
+<div class="svc"><div class="svc-top"><span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="num">06</span></div><h3>Design Education</h3><p>Teaching graphic design — practical workflow, honest critique and real project habits.</p></div>
 </div></div></section>
 <section class="white"><div class="wrap" style="max-width:920px">
 <p class="manifesto reveal">A brand is <em>remembered</em> when every touchpoint tells the same story.</p>
@@ -512,6 +513,18 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   brands strip is a real slider (auto-scroll + drag to scrub); premium footer with
   link underline sweeps, hover-fill giant wordmark (links to Contact), AKCLNT badge
   shine, and a Back to top link. Footer badge stays in the middle column, one per page.
+- Service icons + header (2026-11-10): each What I Do card has its own SVG icon
+  (layers/pen/box/megaphone/compass/book); header gains a shadow once scrolled.
+- Skiper-inspired pack (2026-11-10): Skiper UI is skiper-ui.com (NOT skipperui.com,
+  which does not resolve) — React/Tailwind library, 106 components, 37 free, 69
+  Premium ($129 one-time). Its code was NOT copied; original vanilla versions of
+  the same families: hero canvas crowd (particles drift + follow the cursor),
+  rolling-words hero line (Designing — Brand Identities/Packaging/...), rotating
+  gradient border on service-card hover, scroll-with-blur section headings.
+  VERIFICATION NOTE: plain headless --screenshot catches the ~1.2s hero entrance
+  mid-flight (frozen half-risen words) — that is a screenshot-timing artifact, NOT
+  a site bug. Verified via CDP after 7 real seconds: word transform is identity,
+  hero-sub opacity 1, all 6 words + full headline present.
 
 ## Run locally / deploy
 ```bash

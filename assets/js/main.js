@@ -187,6 +187,15 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBar();
   }
 
+  // Header gains a shadow once the page scrolls (premium sticky header).
+  (function () {
+    const header = document.querySelector('header.site');
+    if (!header) return;
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 12);
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
   // 8) Cursor ring — lime ring trailing the mouse, grows over links/buttons.
   if (finePointer && !reduced) {
     const ring = document.createElement('div');
@@ -262,6 +271,57 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
     });
   });
+
+  // 12) Canvas crowd (Skiper-inspired, original code) — lime particles drift
+  // across the hero and gather gently toward the cursor.
+  (function () {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas || reduced) return;
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0, mx = -9999, my = -9999;
+    const N = 70, pts = [];
+    function size() {
+      const r = canvas.parentElement.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = r.width; H = r.height;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    size();
+    window.addEventListener('resize', size);
+    for (let i = 0; i < N; i++) {
+      pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, r: Math.random() * 1.8 + .8 });
+    }
+    canvas.parentElement.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      mx = e.clientX - r.left; my = e.clientY - r.top;
+    });
+    canvas.parentElement.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+    (function draw() {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of pts) {
+        const dx = mx - p.x, dy = my - p.y, d = Math.hypot(dx, dy);
+        if (d < 160 && d > 0.01) { p.vx += (dx / d) * .012; p.vy += (dy / d) * .012; }
+        p.vx *= .985; p.vy *= .985;
+        if (Math.abs(p.vx) < .05) p.vx += (Math.random() - .5) * .02;
+        if (Math.abs(p.vy) < .05) p.vy += (Math.random() - .5) * .02;
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(183,254,93,.55)'; ctx.fill();
+      }
+      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 110) {
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = 'rgba(183,254,93,' + (0.14 * (1 - d / 110)).toFixed(3) + ')';
+          ctx.lineWidth = 1; ctx.stroke();
+        }
+      }
+      requestAnimationFrame(draw);
+    })();
+  })();
 
   // Scroll reveal — cards and sections fade up as they enter view.
   // The .reveal class is added here (not in the HTML), so no-JS never hides content.

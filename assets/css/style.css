@@ -324,3 +324,33 @@ html{scroll-behavior:smooth}
 .to-top{color:#8fa0b3;text-decoration:none;transition:color .3s}
 .to-top:hover{color:var(--lime)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---- Service icons + header scroll state (added 2026-11-10) ---- */
+.svc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.svc-icon{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(183,254,93,.12);border:1px solid rgba(126,196,20,.35);color:var(--lime-dark);transition:background .3s,color .3s,transform .3s}
+.svc-icon svg{width:22px;height:22px}
+.svc:hover .svc-icon{background:var(--lime);color:#111820;transform:rotate(-6deg) scale(1.06)}
+header.site{transition:box-shadow .3s,background .3s}
+header.site.scrolled{box-shadow:0 12px 32px rgba(0,0,0,.4);background:rgba(13,19,27,.97)}
+
+/* ---- Skiper-inspired premium pack (added 2026-11-10) ----
+   NOTE: Skiper UI (skiper-ui.com, React/Tailwind) — 37 components free, 69
+   Premium ($129). Its code was NOT copied; these are original vanilla
+   implementations of the same effect families (canvas crowd, rolling text,
+   gradient hover cards, scroll-with-blur). */
+/* Hero particle canvas (JS draws the crowd) */
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.6}
+/* Rolling words line under the hero sub */
+.roll-line{font-family:var(--display);font-size:19px;font-weight:600;color:#dbe4ee;margin:0 0 6px}
+.roll-line .roll-label{color:var(--lime)}
+.roll-words{display:inline-block;height:1.3em;overflow:hidden;vertical-align:bottom}
+.roll-track{display:block;animation:rollWords 15s cubic-bezier(.6,.05,.3,1) infinite}
+.roll-track span{display:block;height:1.3em;line-height:1.3;color:#fff;white-space:nowrap}
+@keyframes rollWords{0%,13%{transform:translateY(0)}16.6%,29.6%{transform:translateY(-16.667%)}33.2%,46.2%{transform:translateY(-33.333%)}49.8%,62.8%{transform:translateY(-50%)}66.4%,79.4%{transform:translateY(-66.667%)}83%,96%{transform:translateY(-83.333%)}100%{transform:translateY(0)}}
+/* Gradient hover border on service cards (rotating conic border) */
+@property --angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+.svc:hover{border:1px solid transparent;background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--angle),var(--lime),#142B4D,#7ddb2a,var(--lime)) border-box;animation:spinBorder 5s linear infinite}
+@keyframes spinBorder{to{--angle:360deg}}
+/* Scroll-with-blur headings */
+.sec-head.reveal,.manifesto.reveal{filter:blur(8px);transition:opacity .7s,transform .7s,filter .8s}
+.sec-head.reveal.in,.manifesto.reveal.in{filter:blur(0)}

@@ -36,6 +36,18 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   brands strip is a real slider (auto-scroll + drag to scrub); premium footer with
   link underline sweeps, hover-fill giant wordmark (links to Contact), AKCLNT badge
   shine, and a Back to top link. Footer badge stays in the middle column, one per page.
+- Service icons + header (2026-11-10): each What I Do card has its own SVG icon
+  (layers/pen/box/megaphone/compass/book); header gains a shadow once scrolled.
+- Skiper-inspired pack (2026-11-10): Skiper UI is skiper-ui.com (NOT skipperui.com,
+  which does not resolve) — React/Tailwind library, 106 components, 37 free, 69
+  Premium ($129 one-time). Its code was NOT copied; original vanilla versions of
+  the same families: hero canvas crowd (particles drift + follow the cursor),
+  rolling-words hero line (Designing — Brand Identities/Packaging/...), rotating
+  gradient border on service-card hover, scroll-with-blur section headings.
+  VERIFICATION NOTE: plain headless --screenshot catches the ~1.2s hero entrance
+  mid-flight (frozen half-risen words) — that is a screenshot-timing artifact, NOT
+  a site bug. Verified via CDP after 7 real seconds: word transform is identity,
+  hero-sub opacity 1, all 6 words + full headline present.
 
 ## Run locally / deploy
 ```bash
