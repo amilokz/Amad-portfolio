@@ -1,0 +1,94 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drinks Label Size Finder — Bottle & Can Label Calculator (Free) — Muhammad Amad</title><meta name="description" content="What size label fits your bottle or can? Free finder for cola, energy drink, water and wine bottles: label size and print-ready artwork size in mm and inches.">
+<meta property="og:title" content="Drinks Label Size Finder — Bottle & Can Label Calculator (Free) — Muhammad Amad">
+<meta property="og:description" content="What size label fits your bottle or can? Free finder for cola, energy drink, water and wine bottles: label size and print-ready artwork size in mm and inches."><meta property="og:type" content="website">
+<meta property="og:image" content="https://muhammadamad.example/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Muhammad Amad","jobTitle":"Graphic Designer & Creative Lead","description":"Graphic designer and creative lead focused on brand identity, visual communication, and design education.","address":{"@type":"PostalAddress","addressLocality":"Peshawar","addressCountry":"PK"},"alumniOf":[{"@type":"EducationalOrganization","name":"University of Agriculture Peshawar"},{"@type":"EducationalOrganization","name":"Saylani Welfare"}],"worksFor":{"@type":"Organization","name":"Markhor Group of Companies"},"knowsAbout":["Brand Identity","Graphic Design","Packaging Design","Campaign Design","Creative Direction","Design Education"],"sameAs":["https://www.linkedin.com/in/muhammad-amad7/"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Drinks Label Size Finder","applicationCategory":"DesignApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"PKR"},"description":"Free label size finder for drinks bottles and cans: wrap and front label sizes with bleed, in mm and inches."}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I measure a bottle for a label?","acceptedAnswer":{"@type":"Answer","text":"Measure the straight section only — from where the shoulder starts to flatten to where the base begins to taper. Measure the diameter across the widest straight part, or wrap a strip of paper around it, mark where it meets, and measure it flat. Never measure the shoulder or the base curves: a flat label will not sit there."}},{"@type":"Question","name":"What is the label size formula?","acceptedAnswer":{"@type":"Answer","text":"Circumference = diameter × π (3.1416). A full wrap label is the circumference minus a small gap (3 mm), or plus an overlap for the seam. A front label is usually about 45% of the circumference. Add bleed — usually 3 mm on every side — to get the artwork size."}},{"@type":"Question","name":"Do I need bleed on a label?","acceptedAnswer":{"@type":"Answer","text":"Yes — 3 mm on every side is the standard. The artwork must extend past the cut line so the cutter's small drift never leaves a white edge."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23111820'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23b7fe5d' font-family='Arial' font-weight='bold'>M</text></svg>">
+</head><body><header class="site"><nav class="nav">
+<a class="wordmark" href="../index.html">Muhammad <span>Amad</span></a>
+<button class="menu-btn" aria-label="Menu">☰</button>
+<div class="nav-links"><a href="../work.html" class="">Work</a><a href="../about.html" class="">About</a><a href="../academy.html" class="">Academy</a><a href="index.html" class="active">Tools</a><a href="../insights.html" class="">Insights</a><a href="../contact.html" class="">Contact</a></div>
+<a class="btn btn-lime nav-cta" href="../contact.html">Let’s Talk →</a>
+</nav></header>
+<section class="light"><div class="wrap">
+<span class="eyebrow">Free Tool · No sign-up</span><h2 style="font-size:clamp(34px,5vw,56px);margin-top:10px">Drinks Label Size <em style="color:var(--lime-dark);font-style:normal">Finder</em></h2>
+<p class="lead" style="max-width:680px">What size label fits your bottle or can? Pick your drink below — cola, energy drink, water, wine — or type your own measurements. You get the label size and the print-ready artwork size in millimetres and inches.</p>
+<div class="tool-grid" style="margin-top:32px"><div class="tool-panel">
+<h3>Your container</h3>
+<p style="font-size:14px;color:var(--muted)">Pick a drink — or type your own size. Presets are typical starting points; always measure your actual container.</p>
+<div class="chips">
+<button class="chip lb-preset active" data-preset="slim250">250 ml slim can</button>
+<button class="chip lb-preset" data-preset="can330">330 ml can</button>
+<button class="chip lb-preset" data-preset="bottle500">500 ml bottle</button>
+<button class="chip lb-preset" data-preset="bottle1000">1 litre bottle</button>
+<button class="chip lb-preset" data-preset="wine750">750 ml wine</button>
+<button class="chip lb-preset" data-preset="cola350">350 ml glass cola</button>
+</div>
+<div class="field-row3">
+<label>Diameter (mm) <input id="lb-dia" type="number" value="52" min="20" max="300"></label>
+<label>Label height (mm) <input id="lb-height" type="number" value="120" min="10" max="400"></label>
+<label>Bleed / edge (mm) <input id="lb-bleed" type="number" value="3" min="0" max="10"></label>
+</div>
+<label style="margin-top:14px">Label type
+<div class="chips" style="margin-top:8px">
+<label class="chip"><input type="radio" name="lb-mode" value="wrap" checked style="width:auto"> Full wrap (3 mm gap)</label>
+<label class="chip"><input type="radio" name="lb-mode" value="overlap" style="width:auto"> Full wrap (overlap seam)</label>
+<label class="chip"><input type="radio" name="lb-mode" value="front" style="width:auto"> Front label only</label>
+</div></label>
+</div>
+<div class="result" id="lb-result"><span class="eyebrow">Your label size</span>
+<table>
+<tr><td>Circumference</td><td id="lb-circ">—</td></tr>
+<tr><td>Label width</td><td id="lb-width">—</td></tr>
+<tr><td>Label height</td><td id="lb-height-out">—</td></tr>
+<tr><td>Artwork size (with bleed)</td><td id="lb-art">—</td></tr>
+<tr><td>Label size in inches</td><td id="lb-inch">—</td></tr>
+</table>
+<p class="fine" id="lb-formula"></p>
+<p style="margin-top:20px"><a class="btn btn-lime" href="../contact.html">Need This Label Designed? →</a></p></div>
+</div></div></section>
+<section class="white"><div class="wrap" style="max-width:820px">
+<h2>How the size is worked out</h2>
+<p>For a round bottle or can, the label width comes from the circumference — and the circumference comes from the diameter: <b>Circumference = Diameter × π (3.1416)</b>. A full wrap is the circumference minus a 3&nbsp;mm gap so the ends never collide, or plus a 6&nbsp;mm overlap if the seam should overlap itself. A front label is usually about 45% of the circumference. The label height is the usable straight height you measured. Add bleed to both sides of each dimension: a label with 3&nbsp;mm bleed needs 6&nbsp;mm extra in each direction for the artwork file.</p>
+<h2>How to measure a bottle or jar</h2>
+<p>Measure the straight section only — from where the shoulder starts to flatten to where the base begins to taper. Measure the diameter across the widest straight part, or wrap a strip of paper around the container, mark where it meets, and measure it flat. Never measure the shoulder or the base curves: a flat label will not sit there. A small gap (about 3&nbsp;mm) hides small measuring and application errors.</p>
+<h2>Common drinks containers</h2>
+<table class="guide-table"><tr><th>Container</th><th>Diameter</th><th>Typical label height</th><th>Full wrap width</th></tr>
+<tr><td>250 ml slim can (energy drink)</td><td>52 mm</td><td>120 mm</td><td>160 mm</td></tr>
+<tr><td>330 ml standard can</td><td>66 mm</td><td>100 mm</td><td>204 mm</td></tr>
+<tr><td>500 ml water / cold-drink bottle</td><td>65 mm</td><td>110 mm</td><td>201 mm</td></tr>
+<tr><td>1 litre bottle</td><td>85 mm</td><td>150 mm</td><td>264 mm</td></tr>
+<tr><td>750 ml wine bottle (front label)</td><td>75 mm</td><td>100 mm</td><td>106 mm (front)</td></tr></table>
+<p style="color:var(--muted);font-size:14px">Typical starting points only — containers vary between manufacturers, so always measure the actual bottle or can before printing.</p>
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>How do I measure a bottle for a label?</summary><p>Measure the straight section only — from where the shoulder starts to flatten to where the base begins to taper. Measure the diameter across the widest straight part, or wrap a strip of paper around it, mark where it meets, and measure it flat. Never measure the shoulder or the base curves: a flat label will not sit there.</p></details>
+<details class="faq"><summary>What is the label size formula?</summary><p>Circumference = diameter × π (3.1416). A full wrap label is the circumference minus a small gap (3 mm), or plus an overlap for the seam. A front label is usually about 45% of the circumference. Add bleed — usually 3 mm on every side — to get the artwork size.</p></details>
+<details class="faq"><summary>Do I need bleed on a label?</summary><p>Yes — 3 mm on every side is the standard. The artwork must extend past the cut line so the cutter’s small drift never leaves a white edge.</p></details>
+<p><a href="../index.html">← All free tools</a> · <a href="../work.html">See Amad’s label work →</a></p>
+</div></section>
+<script src="../assets/js/tools.js"></script>
+<footer class="site"><div class="wrap">
+<div class="foot-grid">
+<div><h4>Muhammad Amad</h4>
+<p style="color:#b9c4d0">Graphic designer &amp; creative lead — brand identity, visual communication, and design education.</p>
+<a href="https://www.linkedin.com/in/muhammad-amad7/">LinkedIn ↗</a>
+<a href="../cv.html">Download / view CV</a></div>
+<div class="foot-mid"><h4>Built with care</h4>
+<a class="akclnt-badge" href="https://akclnt.com" target="_blank" rel="noopener"><span class="dot"></span>Built by&nbsp;<b>AKCLNT</b>&nbsp;<small>akclnt.com</small></a>
+<p style="color:#8fa0b3;font-size:13px;margin-top:12px">Design &amp; development by AKCLNT.</p></div>
+<div><h4>Explore</h4>
+<a href="../work.html">Work</a><a href="../about.html">About</a><a href="../academy.html">Academy</a>
+<a href="../insights.html">Insights</a><a href="../contact.html">Contact</a>
+<a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></div>
+</div>
+<div class="foot-word">MUHAMMAD AMAD</div>
+<div class="foot-bottom"><span>© <span data-year>2026</span> Muhammad Amad. All rights reserved.</span>
+<span>Graphic Designer &amp; Creative Lead</span></div>
+</div></footer>
+<script src="../assets/js/main.js"></script></body></html>

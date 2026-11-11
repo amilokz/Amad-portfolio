@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print Preflight Checker — Bleed, DPI, CMYK & Fonts (Free) — Muhammad Amad</title><meta name="description" content="Free print preflight checker: check bleed, resolution, safe margin, colour mode, fonts and file format before sending artwork to print. No sign-up.">
+<meta property="og:title" content="Print Preflight Checker — Bleed, DPI, CMYK & Fonts (Free) — Muhammad Amad">
+<meta property="og:description" content="Free print preflight checker: check bleed, resolution, safe margin, colour mode, fonts and file format before sending artwork to print. No sign-up."><meta property="og:type" content="website">
+<meta property="og:image" content="https://muhammadamad.example/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Muhammad Amad","jobTitle":"Graphic Designer & Creative Lead","description":"Graphic designer and creative lead focused on brand identity, visual communication, and design education.","address":{"@type":"PostalAddress","addressLocality":"Peshawar","addressCountry":"PK"},"alumniOf":[{"@type":"EducationalOrganization","name":"University of Agriculture Peshawar"},{"@type":"EducationalOrganization","name":"Saylani Welfare"}],"worksFor":{"@type":"Organization","name":"Markhor Group of Companies"},"knowsAbout":["Brand Identity","Graphic Design","Packaging Design","Campaign Design","Creative Direction","Design Education"],"sameAs":["https://www.linkedin.com/in/muhammad-amad7/"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Print Preflight Checker","applicationCategory":"DesignApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"PKR"},"description":"Free preflight checker for print artwork: bleed, DPI, safe margin, CMYK, fonts and file format."}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is print bleed?","acceptedAnswer":{"@type":"Answer","text":"Bleed is artwork extended past the trim line — usually 3 mm on every side — so the cutter's small drift never leaves a white edge. Without bleed, a tiny cutting shift shows as an unprinted sliver."}},{"@type":"Question","name":"What resolution do I need for print?","acceptedAnswer":{"@type":"Answer","text":"300 DPI at the finished size for anything held in the hand — business cards, flyers, labels, packaging. Large-format work viewed from a distance can use less."}},{"@type":"Question","name":"Should my print file be CMYK or RGB?","acceptedAnswer":{"@type":"Answer","text":"CMYK. RGB is a screen colour mode; printers print in CMYK, and converting at the last minute shifts colours. Design in CMYK from the start for print work."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23111820'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23b7fe5d' font-family='Arial' font-weight='bold'>M</text></svg>">
+</head><body><header class="site"><nav class="nav">
+<a class="wordmark" href="../index.html">Muhammad <span>Amad</span></a>
+<button class="menu-btn" aria-label="Menu">☰</button>
+<div class="nav-links"><a href="../work.html" class="">Work</a><a href="../about.html" class="">About</a><a href="../academy.html" class="">Academy</a><a href="index.html" class="active">Tools</a><a href="../insights.html" class="">Insights</a><a href="../contact.html" class="">Contact</a></div>
+<a class="btn btn-lime nav-cta" href="../contact.html">Let’s Talk →</a>
+</nav></header>
+<section class="light"><div class="wrap">
+<span class="eyebrow">Free Tool · No sign-up</span><h2 style="font-size:clamp(34px,5vw,56px);margin-top:10px">Print Preflight <em style="color:var(--lime-dark);font-style:normal">Checker</em></h2>
+<p class="lead" style="max-width:680px">About to send artwork to print? Check bleed, resolution, safe margin, colour mode, fonts and file format first — and fix what fails before you pay for a reprint.</p>
+<div class="tool-grid" style="margin-top:32px"><div class="tool-panel">
+<h3>Your artwork</h3>
+<div class="field-row3">
+<label>Bleed / edge (mm) <input id="pf-bleed" type="number" value="3" min="0" max="10" step="0.5"></label>
+<label>Resolution (DPI) <input id="pf-dpi" type="number" value="300" min="72" max="1200" step="1"></label>
+<label>Safe margin (mm) <input id="pf-safe" type="number" value="5" min="0" max="20" step="0.5"></label>
+</div>
+<div class="field-row3" style="margin-top:14px">
+<label>Colour mode <select id="pf-color"><option value="cmyk">CMYK</option><option value="rgb">RGB</option></select></label>
+<label>Fonts <select id="pf-fonts"><option value="outlined">Outlined / converted to curves</option><option value="embedded">Embedded in the PDF</option><option value="missing">Not embedded</option></select></label>
+<label>File format <select id="pf-format"><option value="pdfx">PDF/X (print-ready)</option><option value="pdf">Plain PDF</option><option value="image">JPG / PNG</option></select></label>
+</div>
+<p style="font-size:13px;color:var(--muted);margin-top:14px">Standards used: bleed 3 mm, resolution 300 DPI, safe margin 3 mm, CMYK, fonts outlined, PDF/X. Your printer’s spec sheet always wins over this checker.</p>
+</div>
+<div class="result"><span class="eyebrow">Preflight result</span>
+<div class="big" id="pf-score">—</div>
+<div id="pf-list" style="margin-top:8px"></div>
+<p style="margin-top:20px"><a class="btn btn-lime" href="../contact.html">Get Print-Ready Design →</a></p>
+<p class="fine">This checker does arithmetic on the numbers you enter. It does not open or inspect your file — always ask your printer for a proof before a big run.</p></div>
+</div></div></section>
+<section class="white"><div class="wrap" style="max-width:820px">
+<h2>What each check means</h2>
+<table class="guide-table"><tr><th>Check</th><th>Standard</th><th>Why it matters</th></tr>
+<tr><td>Bleed</td><td>3 mm per edge</td><td>Cutting drifts by about a millimetre. Without bleed, that drift shows as a white edge.</td></tr>
+<tr><td>Resolution</td><td>300 DPI at finished size</td><td>Below 150 DPI, print looks blurry. 150–299 DPI is a risk for anything held in the hand.</td></tr>
+<tr><td>Safe margin</td><td>3 mm inside the trim</td><td>Text closer than 3 mm to the edge can get clipped — and looks cramped even on a good cut.</td></tr>
+<tr><td>Colour mode</td><td>CMYK</td><td>Printers print CMYK. RGB files get converted late, and colours shift.</td></tr>
+<tr><td>Fonts</td><td>Outlined or embedded</td><td>If the printer’s computer lacks your font, it substitutes another one and your layout breaks.</td></tr>
+<tr><td>File format</td><td>PDF/X</td><td>The print-ready standard: text stays sharp and print settings travel with the file.</td></tr></table>
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>What is print bleed?</summary><p>Bleed is artwork extended past the trim line — usually 3 mm on every side — so the cutter’s small drift never leaves a white edge. Without bleed, a tiny cutting shift shows as an unprinted sliver.</p></details>
+<details class="faq"><summary>What resolution do I need for print?</summary><p>300 DPI at the finished size for anything held in the hand — business cards, flyers, labels, packaging. Large-format work viewed from a distance can use less.</p></details>
+<details class="faq"><summary>Should my print file be CMYK or RGB?</summary><p>CMYK. RGB is a screen colour mode; printers print in CMYK, and converting at the last minute shifts colours. Design in CMYK from the start for print work.</p></details>
+<p><a href="../index.html">← All free tools</a> · <a href="../academy.html">Learn design with Amad →</a></p>
+</div></section>
+<script src="../assets/js/tools.js"></script>
+<footer class="site"><div class="wrap">
+<div class="foot-grid">
+<div><h4>Muhammad Amad</h4>
+<p style="color:#b9c4d0">Graphic designer &amp; creative lead — brand identity, visual communication, and design education.</p>
+<a href="https://www.linkedin.com/in/muhammad-amad7/">LinkedIn ↗</a>
+<a href="../cv.html">Download / view CV</a></div>
+<div class="foot-mid"><h4>Built with care</h4>
+<a class="akclnt-badge" href="https://akclnt.com" target="_blank" rel="noopener"><span class="dot"></span>Built by&nbsp;<b>AKCLNT</b>&nbsp;<small>akclnt.com</small></a>
+<p style="color:#8fa0b3;font-size:13px;margin-top:12px">Design &amp; development by AKCLNT.</p></div>
+<div><h4>Explore</h4>
+<a href="../work.html">Work</a><a href="../about.html">About</a><a href="../academy.html">Academy</a>
+<a href="../insights.html">Insights</a><a href="../contact.html">Contact</a>
+<a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></div>
+</div>
+<div class="foot-word">MUHAMMAD AMAD</div>
+<div class="foot-bottom"><span>© <span data-year>2026</span> Muhammad Amad. All rights reserved.</span>
+<span>Graphic Designer &amp; Creative Lead</span></div>
+</div></footer>
+<script src="../assets/js/main.js"></script></body></html>
