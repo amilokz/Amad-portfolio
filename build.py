@@ -34,6 +34,7 @@ def footer():
 <div class="foot-grid">
 <div><h4>Muhammad Amad</h4>
 <p style="color:#b9c4d0">Graphic designer &amp; creative lead — brand identity, visual communication, and design education.</p>
+<p style="color:#8fa0b3;font-size:14px">Based in Peshawar, Pakistan — working with clients in Pakistan and abroad.</p>
 <a href="{LINKEDIN}">LinkedIn ↗</a>
 <a href="cv.html">Download / view CV</a></div>
 <div class="foot-mid"><h4>Built with care</h4>
@@ -44,9 +45,10 @@ def footer():
 <a href="insights.html">Insights</a><a href="contact.html">Contact</a>
 <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
 </div>
-<div class="foot-word">MUHAMMAD AMAD</div>
+<a class="foot-word" href="contact.html">MUHAMMAD AMAD</a>
 <div class="foot-bottom"><span>© <span data-year>2026</span> Muhammad Amad. All rights reserved.</span>
-<span>Graphic Designer &amp; Creative Lead</span></div>
+<span>Graphic Designer &amp; Creative Lead</span>
+<a href="#" class="to-top">↑ Back to top</a></div>
 </div></footer>
 <script src="assets/js/main.js"></script>"""
 
@@ -505,6 +507,11 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   real components can be integrated instead.
 - Hero portrait slot: drop Amad's photo at `assets/img/portrait.jpg` and rebuild —
   build.py emits the real `<img>` when the file exists, otherwise the MA monogram.
+- Services/footer pack (2026-11-10): What I Do cards get a mouse-spotlight glow,
+  shine sweep and 3D tilt; scroll progress bar (lime, top); cursor ring on desktop;
+  brands strip is a real slider (auto-scroll + drag to scrub); premium footer with
+  link underline sweeps, hover-fill giant wordmark (links to Contact), AKCLNT badge
+  shine, and a Back to top link. Footer badge stays in the middle column, one per page.
 
 ## Run locally / deploy
 ```bash

@@ -113,14 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4) 3D tilt — work cards + hero portrait lean toward the cursor.
   if (finePointer && !reduced) {
-    document.querySelectorAll('.work-card, .portrait-card').forEach(card => {
+    document.querySelectorAll('.work-card, .portrait-card, .svc').forEach(card => {
       card.classList.add('tilt');
+      const maxTilt = card.classList.contains('svc') ? 4 : 7;
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
         card.style.transition = 'transform .15s ease-out';
-        card.style.transform = 'perspective(900px) rotateY(' + (px * 7).toFixed(2) + 'deg) rotateX(' + (-py * 7).toFixed(2) + 'deg) translateY(-4px)';
+        card.style.transform = 'perspective(900px) rotateY(' + (px * maxTilt).toFixed(2) + 'deg) rotateX(' + (-py * maxTilt).toFixed(2) + 'deg) translateY(-4px)';
       });
       card.addEventListener('mouseleave', () => {
         card.style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1)';
@@ -171,9 +172,100 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ---- Services cards + premium footer pack ----
+  // 7) Scroll progress bar (lime line at the very top).
+  if (!reduced) {
+    const bar = document.createElement('div');
+    bar.id = 'scroll-progress';
+    document.body.appendChild(bar);
+    const updateBar = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+    };
+    document.addEventListener('scroll', updateBar, { passive: true });
+    updateBar();
+  }
+
+  // 8) Cursor ring — lime ring trailing the mouse, grows over links/buttons.
+  if (finePointer && !reduced) {
+    const ring = document.createElement('div');
+    ring.id = 'cursor-ring';
+    document.body.appendChild(ring);
+    let rx = -100, ry = -100, tx2 = rx, ty2 = ry, shown2 = false;
+    document.addEventListener('mousemove', e => {
+      tx2 = e.clientX; ty2 = e.clientY;
+      if (!shown2) { ring.style.opacity = '1'; shown2 = true; }
+    });
+    document.querySelectorAll('a, button, .svc, .work-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('grow'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('grow'));
+    });
+    (function rloop() {
+      rx += (tx2 - rx) * 0.18; ry += (ty2 - ry) * 0.18;
+      const half = ring.classList.contains('grow') ? 32 : 19;
+      ring.style.transform = 'translate(' + (rx - half).toFixed(1) + 'px,' + (ry - half).toFixed(1) + 'px)';
+      requestAnimationFrame(rloop);
+    })();
+  }
+
+  // 9) Services spotlight — the lime glow inside a card follows the cursor.
+  if (finePointer && !reduced) {
+    document.querySelectorAll('.svc').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  // 10) Brands slider — auto-scrolls, drag it to scrub, pauses while held.
+  (function () {
+    const strip = document.querySelector('.brand-marquee span');
+    if (!strip || reduced) return;
+    const half = () => strip.scrollWidth / 2;
+    let x = 0, dragging = false, startX = 0, startOffset = 0;
+    const parent = strip.closest('.brand-strip');
+    function tick() {
+      if (!dragging) {
+        x -= 0.6;
+        if (x <= -half()) x += half();
+        strip.style.transform = 'translateX(' + x.toFixed(1) + 'px)';
+      }
+      requestAnimationFrame(tick);
+    }
+    parent.addEventListener('pointerdown', e => {
+      dragging = true; startX = e.clientX; startOffset = x;
+      parent.classList.add('dragging');
+    });
+    window.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      x = startOffset + (e.clientX - startX);
+      strip.style.transform = 'translateX(' + x.toFixed(1) + 'px)';
+    });
+    window.addEventListener('pointerup', () => {
+      if (!dragging) return;
+      dragging = false;
+      parent.classList.remove('dragging');
+      // wrap back into the seamless range
+      while (x <= -half()) x += half();
+      while (x > 0) x -= half();
+    });
+    requestAnimationFrame(tick);
+  })();
+
+  // 11) Back to top — smooth scroll (footer link).
+  document.querySelectorAll('.to-top').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
+
   // Scroll reveal — cards and sections fade up as they enter view.
   // The .reveal class is added here (not in the HTML), so no-JS never hides content.
-  const revealEls = document.querySelectorAll('.work-card,.svc,.step,.course,.timeline>div,.card,details.faq,.tool-panel,.result,.sec-head');
+  const revealEls = document.querySelectorAll('.work-card,.svc,.step,.course,.timeline>div,.card,details.faq,.tool-panel,.result,.sec-head,.manifesto,.swatch');
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });

@@ -289,3 +289,38 @@ header.site,footer.site{position:relative;z-index:2}
 .swatch div{padding:14px 16px}
 .swatch b{display:block;font-size:15px}
 .swatch small{color:var(--muted);font-size:13px}
+
+/* ---- Services cards + premium footer pack (added 2026-11-10) ---- */
+html{scroll-behavior:smooth}
+/* Scroll progress bar (JS sets width) */
+#scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--lime),#7ddb2a);z-index:999;pointer-events:none}
+/* Cursor ring (desktop mouse only, JS appends) */
+#cursor-ring{position:fixed;top:0;left:0;width:38px;height:38px;border:1.5px solid rgba(183,254,93,.65);border-radius:50%;pointer-events:none;z-index:998;opacity:0;transition:opacity .4s, width .25s, height .25s, border-color .25s;mix-blend-mode:screen}
+#cursor-ring.grow{width:64px;height:64px;border-color:rgba(183,254,93,.9)}
+/* What I Do cards: mouse-spotlight border + shine sweep */
+.svc{position:relative;overflow:hidden}
+.svc>*{position:relative;z-index:1}
+.svc::before{content:"";position:absolute;inset:0;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(183,254,93,.14),transparent 70%);opacity:0;transition:opacity .35s;pointer-events:none}
+.svc:hover::before{opacity:1}
+.svc::after{content:"";position:absolute;top:0;left:-80%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.14),transparent);transform:skewX(-18deg);transition:left .7s ease;pointer-events:none}
+.svc:hover::after{left:130%}
+.svc:hover{border-color:rgba(183,254,93,.55)}
+.svc:hover .num{color:var(--lime-dark);transform:scale(1.12)}
+.svc .num{display:inline-block;transition:transform .3s,color .3s}
+/* Brands slider: JS drives it (auto-scroll + drag) */
+.brand-strip{cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.brand-strip.dragging{cursor:grabbing}
+.brand-marquee span{animation:none}
+/* Premium footer */
+.foot-grid>div a:not(.akclnt-badge){display:block;width:fit-content;position:relative}
+.foot-grid>div a:not(.akclnt-badge)::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.foot-grid>div a:not(.akclnt-badge):hover::after{transform:scaleX(1)}
+.foot-word{display:block;text-decoration:none;transition:color .5s,-webkit-text-stroke .5s;cursor:pointer}
+.foot-word:hover{color:transparent;-webkit-text-stroke:1.5px rgba(183,254,93,.75)}
+.akclnt-badge{position:relative;overflow:hidden}
+.akclnt-badge::after{content:"";position:absolute;top:0;left:-90%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(183,254,93,.35),transparent);transform:skewX(-18deg);transition:left .6s ease}
+.akclnt-badge:hover::after{left:140%}
+.akclnt-badge:hover{box-shadow:0 0 0 1px rgba(183,254,93,.5),0 8px 28px rgba(183,254,93,.18)}
+.to-top{color:#8fa0b3;text-decoration:none;transition:color .3s}
+.to-top:hover{color:var(--lime)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
