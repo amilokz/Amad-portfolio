@@ -382,7 +382,10 @@ header.site{position:sticky;top:14px;z-index:50;max-width:1120px;margin:14px aut
    hero photo is a background-removed PNG (portrait-cutout.png, rembg) so
    there is no green rectangle at all — the person floats over the hero
    like the reference. A gentle bottom fade melts the shirt into the bg. */
-.hero-portrait{position:relative;width:min(460px,86vw);margin:44px auto 0}
+/* Portrait pulled up so it overlaps the headline's last line slightly,
+   like the thebuildr reference (photo sits ON the text). z-index 2 keeps
+   it above the headline; the roll-line moved below the portrait. */
+.hero-portrait{position:relative;z-index:2;width:min(460px,86vw);margin:-86px auto 0}
 .hero-portrait img{display:block;width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:center 18%;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
 .hero-portrait .monogram{display:grid;place-items:center;min-height:420px}
 .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;text-align:left;margin-top:40px}
