@@ -126,8 +126,13 @@ def write(rel, html):
 # ---------------------------------------------------------------- HOME
 # Hero portrait: drop Amad's real photo at assets/img/portrait.jpg and rebuild —
 # it replaces the MA monogram automatically. Until then the monogram shows.
+# Hero uses the background-removed cutout (portrait-cutout.png, rembg u2netp)
+# so the photo is a clean cutout like the thebuildr reference — no card, no
+# green box. About keeps the full JPG inside its card.
 _HAS_PORTRAIT = (ROOT / "assets" / "img" / "portrait.jpg").exists()
-portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
+_HAS_CUTOUT = (ROOT / "assets" / "img" / "portrait-cutout.png").exists()
+_HERO_SRC = "assets/img/portrait-cutout.png" if _HAS_CUTOUT else "assets/img/portrait.jpg"
+portrait_inner = ('<img class="portrait-img" src="' + _HERO_SRC + '" alt="Muhammad Amad — portrait">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
 portrait_note = ('Photograph: Muhammad Amad.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad — this monogram is a design placeholder, not a photograph.')
 # About page portrait (same photo when present; note says where it came from)
 about_portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait" style="width:100%;height:220px;object-fit:cover;border-radius:14px">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')

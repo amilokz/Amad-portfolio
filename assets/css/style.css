@@ -378,11 +378,12 @@ header.site{position:sticky;top:14px;z-index:50;max-width:1120px;margin:14px aut
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(183,254,93,.45)}55%{box-shadow:0 0 0 7px rgba(183,254,93,0)}}
 .hero-center h1{margin:26px 0 0}
 .hero-center .roll-line{margin-top:22px}
-/* Clean image, NO box/card (Komil 2026-11-10, thebuildr reference): no
-   radius, no border, no shadow — the photo's edges melt into the hero
-   background via a radial mask, like the reference's cutout portrait. */
+/* Clean cutout, NO box/card (Komil 2026-11-10, thebuildr reference): the
+   hero photo is a background-removed PNG (portrait-cutout.png, rembg) so
+   there is no green rectangle at all — the person floats over the hero
+   like the reference. A gentle bottom fade melts the shirt into the bg. */
 .hero-portrait{position:relative;width:min(460px,86vw);margin:44px auto 0}
-.hero-portrait img{display:block;width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:center 18%;-webkit-mask-image:radial-gradient(ellipse 92% 86% at 50% 42%,#000 58%,transparent 97%);mask-image:radial-gradient(ellipse 92% 86% at 50% 42%,#000 58%,transparent 97%)}
+.hero-portrait img{display:block;width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:center 18%;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
 .hero-portrait .monogram{display:grid;place-items:center;min-height:420px}
 .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;text-align:left;margin-top:40px}
 .hero-intro p{max-width:430px;color:#b9c4d0;font-size:17px;line-height:1.6;margin:0 0 20px}
