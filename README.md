@@ -66,30 +66,25 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   mask alone could not hide the bright rectangle): background actually REMOVED
   with rembg (u2netp model, venv ~/workspace/.venvs/rembg — the full 1.02G
   default model OOM-killed the VM, the tiny 4.57MB u2netp worked). Hero now
-  uses assets/img/portrait-cutout.webp (1254x1254, WebP q88, 180KB — the PNG
-  was 1.7MB); About keeps the full JPG in its card. CSS mask is now only a
-  gentle bottom fade.
-- NEW PORTRAIT (2026-11-21, Komil: use the neon-eyeball photo instead):
-  the LinkedIn 400x400 photo was replaced by his supplied 1254x1254 shot
-  (Amad holding a glowing eyeball, neon green rim light). Same pipeline:
-  rembg u2netp cutout -> noeyes base + pupil layers -> WebP q88. Source
-  file lives in the media library (Neon_Eye_of_Curiosity.png), NOT in the
-  repo (2.1MB of dead weight otherwise). Old portrait.jpg stays for About.
+  uses assets/img/portrait-cutout.png (400x400 RGBA, 123KB); About keeps the
+  full JPG in its card. CSS mask is now only a gentle bottom fade.
 - Eyes follow the cursor (2026-11-21, Komil: eyes should look where the
-  cursor goes): the portrait is split into 3 layers — portrait-noeyes.webp
+  cursor goes): the portrait is split into 3 layers — portrait-noeyes.png
   (irises painted over with sampled sclera color) + pupil-l.png / pupil-r.png
-  (48x48 circular iris crops). Iris centers measured from upscaled eye crops:
-  left (573,414), right (755,421), iris ~30-36px. JS (main.js 6b) lerps both
-  pupils toward the cursor, scaled by rendered width; centered until the
-  first mouse move, and centered on touch / reduced-motion. ASYMMETRIC clamp:
-  he glances LEFT at the eyeball, so both irises already sit at the left edge
-  of their openings — left 2px, right 11px, up 3px, down 5px (source px).
-  The hero img is square (1/1) so pupil % positions map exactly; parallax
-  moved to the .hero-portrait-wrap so base + pupils drift together.
-  TEST NOTE: headless Chrome reports NO pointer (fine=false, coarse=false),
-  so the effect is gated off there — verify with a matchMedia stub forcing
-  pointer:fine (/tmp/cdp-eyes2.mjs). Verified (old photo): left -4.26px,
-  right +4.26px, up -2.44px.
+  (20x20 circular iris crops). Iris centers measured from upscaled eye crops:
+  left (168,149), right (230,148), iris ~12px in a ~21px eye opening. JS
+  (main.js 6b) lerps both pupils toward the cursor, max ~3.5px horizontal /
+  ~2px vertical in source pixels, scaled by rendered width; centered until
+  the first mouse move, and centered on touch / reduced-motion. The hero img
+  is square (1/1) so pupil % positions map exactly; parallax moved to the
+  .hero-portrait-wrap so base + pupils drift together. TEST NOTE: headless
+  Chrome reports NO pointer (fine=false, coarse=false), so the effect is
+  gated off there — verify with a matchMedia stub forcing pointer:fine
+  (/tmp/cdp-eyes2.mjs). Verified: left -4.26px, right +4.26px, up -2.44px.
+  NOTE 2026-11-21: a neon-eyeball portrait (1254px, Amad holding a glowing
+  eyeball) was tried the same day and REVERTED on Komil's word ('ya sahi nhi
+  han') — the LinkedIn photo stays the hero portrait. Do not reintroduce it
+  unless he asks.
 - Whole-person move (2026-11-21, Komil: whole person should move on the
   cursor): the parallax (main.js 6) now also 3D-tilts the portrait wrapper —
   perspective(900px), rotateY up to +/-7deg (face turns toward the cursor),

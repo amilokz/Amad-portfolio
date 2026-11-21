@@ -388,13 +388,12 @@ header.site{position:sticky;top:14px;z-index:50;max-width:1120px;margin:14px aut
 .hero-portrait-wrap{will-change:transform}
 .hero-portrait{position:relative;z-index:2;width:min(460px,86vw);margin:-86px auto 0}
 .hero-portrait img.portrait-img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
-/* Eyes follow the cursor (2026-11-21, neon-eyeball portrait): the base image
-   is square (1/1) so the pupil layers map exactly — pupil PNGs are 48x48
-   crops, 3.83% of the 1254px source. Left iris center (573,414), right
-   (755,421) in source pixels. */
-.pupil{position:absolute;width:3.83%;height:auto;pointer-events:none;will-change:transform}
-.pupil-l{left:43.78%;top:31.1%}
-.pupil-r{left:58.29%;top:31.66%}
+/* Eyes follow the cursor (2026-11-21): the base image is square (1/1) so the
+   pupil layers map exactly — pupil PNGs are 20x20 crops, 5% of the 400px
+   source. Left iris center (168,149), right (230,148) in source pixels. */
+.pupil{position:absolute;width:5%;height:auto;pointer-events:none;will-change:transform}
+.pupil-l{left:39.5%;top:34.75%}
+.pupil-r{left:55%;top:34.5%}
 .hero-portrait .monogram{display:grid;place-items:center;min-height:420px}
 .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;text-align:left;margin-top:40px}
 .hero-intro p{max-width:430px;color:#b9c4d0;font-size:17px;line-height:1.6;margin:0 0 20px}
