@@ -385,6 +385,7 @@ header.site{position:sticky;top:14px;z-index:50;max-width:1120px;margin:14px aut
 /* Portrait pulled up so it overlaps the headline's last line slightly,
    like the thebuildr reference (photo sits ON the text). z-index 2 keeps
    it above the headline; the roll-line moved below the portrait. */
+.hero-portrait-wrap{will-change:transform}
 .hero-portrait{position:relative;z-index:2;width:min(460px,86vw);margin:-86px auto 0}
 .hero-portrait img.portrait-img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
 /* Eyes follow the cursor (2026-11-21): the base image is square (1/1) so the

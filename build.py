@@ -568,6 +568,15 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   Chrome reports NO pointer (fine=false, coarse=false), so the effect is
   gated off there — verify with a matchMedia stub forcing pointer:fine
   (/tmp/cdp-eyes2.mjs). Verified: left -4.26px, right +4.26px, up -2.44px.
+- Whole-person move (2026-11-21, Komil: whole person should move on the
+  cursor): the parallax (main.js 6) now also 3D-tilts the portrait wrapper —
+  perspective(900px), rotateY up to +/-7deg (face turns toward the cursor),
+  rotateX up to +/-7deg, shift up to ~14px/10px, scale 1.06, lerped 0.06.
+  Headline still drifts the opposite way. Verified with the matchMedia stub
+  (/tmp/cdp-tilt.mjs): left rotateY -6.06deg / -12.1px, right +5.98deg /
+  +12px, below-center rotateX -1.81deg / +2.6px, pupils in sync. TEST NOTE:
+  headless viewport is 1440x900 even with --window-size 1440,1100 — mouse
+  dispatches above y=900 never reach the page (elementFromPoint null).
 
 ## Run locally / deploy
 ```bash

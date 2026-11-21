@@ -150,11 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.work-card').forEach(card => cio.observe(card));
   }
 
-  // 6) Hero parallax — headline + portrait photo drift apart subtly.
-  // (Targets the h1 and the portrait WRAPPER: the portrait frame itself
-  // carries the entrance animation, whose fill would override an inline
-  // transform — and the wrapper moves the base image + pupil layers together,
-  // so the eyes never separate from the face.)
+  // 6) Hero parallax + whole-person move — headline drifts one way, the
+  // portrait shifts toward the cursor AND tilts in 3D (max ~7deg) so Amad
+  // leans toward the mouse. (Targets the h1 and the portrait WRAPPER: the
+  // portrait frame itself carries the entrance animation, whose fill would
+  // override an inline transform — and the wrapper moves the base image +
+  // pupil layers together, so the eyes never separate from the face.)
   if (finePointer && !reduced) {
     const hero = document.querySelector('.hero');
     const leftCol = hero && hero.querySelector('.hero-center h1');
@@ -170,7 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
       (function ploop() {
         cx += (mx - cx) * 0.06; cy += (my - cy) * 0.06;
         if (leftCol) leftCol.style.transform = 'translate(' + (cx * -8).toFixed(1) + 'px,' + (cy * -6).toFixed(1) + 'px)';
-        if (frame) frame.style.transform = 'translate(' + (cx * 10).toFixed(1) + 'px,' + (cy * 8).toFixed(1) + 'px) scale(1.06)';
+        // cx/cy range -0.5..0.5: shift up to ~14px/10px, tilt up to ~7deg.
+        // rotateY positive = face turns right; rotateX negative = leans down.
+        if (frame) frame.style.transform = 'perspective(900px) rotateY(' + (cx * 14).toFixed(2) + 'deg) rotateX(' + (cy * -14).toFixed(2) + 'deg) translate(' + (cx * 28).toFixed(1) + 'px,' + (cy * 20).toFixed(1) + 'px) scale(1.06)';
         requestAnimationFrame(ploop);
       })();
     }
