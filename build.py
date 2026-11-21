@@ -131,8 +131,18 @@ def write(rel, html):
 # green box. About keeps the full JPG inside its card.
 _HAS_PORTRAIT = (ROOT / "assets" / "img" / "portrait.jpg").exists()
 _HAS_CUTOUT = (ROOT / "assets" / "img" / "portrait-cutout.png").exists()
+_HAS_NOEYES = (ROOT / "assets" / "img" / "portrait-noeyes.png").exists()
+_HAS_PUPILS = (ROOT / "assets" / "img" / "pupil-l.png").exists() and (ROOT / "assets" / "img" / "pupil-r.png").exists()
 _HERO_SRC = "assets/img/portrait-cutout.png" if _HAS_CUTOUT else "assets/img/portrait.jpg"
-portrait_inner = ('<img class="portrait-img" src="' + _HERO_SRC + '" alt="Muhammad Amad — portrait">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
+# Eyes-follow-cursor (2026-11-21): when the split layers exist, the hero uses
+# the no-eyes base + two pupil layers (main.js moves the pupils toward the
+# cursor). At rest the composite is identical to the original photo.
+if _HAS_NOEYES and _HAS_PUPILS:
+    portrait_inner = ('<img class="portrait-img" src="assets/img/portrait-noeyes.png" alt="Muhammad Amad — portrait">'
+        '<img class="pupil pupil-l" src="assets/img/pupil-l.png" alt="" aria-hidden="true">'
+        '<img class="pupil pupil-r" src="assets/img/pupil-r.png" alt="" aria-hidden="true">')
+else:
+    portrait_inner = ('<img class="portrait-img" src="' + _HERO_SRC + '" alt="Muhammad Amad — portrait">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
 portrait_note = ('Photograph: Muhammad Amad.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad — this monogram is a design placeholder, not a photograph.')
 # About page portrait (same photo when present; note says where it came from)
 about_portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait" style="width:100%;height:220px;object-fit:cover;border-radius:14px">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
@@ -141,7 +151,7 @@ home = f"""
 <section class="hero"><canvas id="hero-canvas"></canvas><div class="wrap hero-center">
 <span class="avail-badge anim-in"><i></i>Available for new projects</span>
 <h1><span class="hl"><span>Designing <em>identities.</em></span></span><span class="hl"><span>Building <span class="outline">ideas.</span></span></span><span class="hl"><span>Empowering <em>creatives.</em></span></span></h1>
-<div class="hero-portrait anim-in" style="animation-delay:.6s">{portrait_inner}</div>
+<div class="hero-portrait-wrap"><div class="hero-portrait anim-in" style="animation-delay:.6s">{portrait_inner}</div></div>
 <p class="roll-line anim-in" style="animation-delay:.5s"><span class="roll-label">Designing</span> <span class="roll-words"><span class="roll-track"><span>Brand Identities</span><span>Packaging</span><span>Campaign Design</span><span>Creative Direction</span><span>Design Education</span><span>Brand Identities</span></span></span></p>
 <div class="hero-bottom anim-in" style="animation-delay:.7s">
 <div class="hero-intro"><p>Brand identity, packaging and campaigns — designed to stand out on the shelf and in the feed.</p><a class="btn btn-white" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a></div>
@@ -545,6 +555,19 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   default model OOM-killed the VM, the tiny 4.57MB u2netp worked). Hero now
   uses assets/img/portrait-cutout.png (400x400 RGBA, 123KB); About keeps the
   full JPG in its card. CSS mask is now only a gentle bottom fade.
+- Eyes follow the cursor (2026-11-21, Komil: eyes should look where the
+  cursor goes): the portrait is split into 3 layers — portrait-noeyes.png
+  (irises painted over with sampled sclera color) + pupil-l.png / pupil-r.png
+  (20x20 circular iris crops). Iris centers measured from upscaled eye crops:
+  left (168,149), right (230,148), iris ~12px in a ~21px eye opening. JS
+  (main.js 6b) lerps both pupils toward the cursor, max ~3.5px horizontal /
+  ~2px vertical in source pixels, scaled by rendered width; centered until
+  the first mouse move, and centered on touch / reduced-motion. The hero img
+  is square (1/1) so pupil % positions map exactly; parallax moved to the
+  .hero-portrait-wrap so base + pupils drift together. TEST NOTE: headless
+  Chrome reports NO pointer (fine=false, coarse=false), so the effect is
+  gated off there — verify with a matchMedia stub forcing pointer:fine
+  (/tmp/cdp-eyes2.mjs). Verified: left -4.26px, right +4.26px, up -2.44px.
 
 ## Run locally / deploy
 ```bash

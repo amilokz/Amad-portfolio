@@ -151,12 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 6) Hero parallax — headline + portrait photo drift apart subtly.
-  // (Targets the h1 and the portrait img: the portrait frame itself carries
-  // the entrance animation, whose fill would override an inline transform.)
+  // (Targets the h1 and the portrait WRAPPER: the portrait frame itself
+  // carries the entrance animation, whose fill would override an inline
+  // transform — and the wrapper moves the base image + pupil layers together,
+  // so the eyes never separate from the face.)
   if (finePointer && !reduced) {
     const hero = document.querySelector('.hero');
     const leftCol = hero && hero.querySelector('.hero-center h1');
-    const frame = hero && hero.querySelector('.hero-portrait img');
+    const frame = hero && hero.querySelector('.hero-portrait-wrap');
     if (hero && (leftCol || frame)) {
       let mx = 0, my = 0, cx = 0, cy = 0;
       hero.addEventListener('mousemove', e => {
@@ -170,6 +172,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (leftCol) leftCol.style.transform = 'translate(' + (cx * -8).toFixed(1) + 'px,' + (cy * -6).toFixed(1) + 'px)';
         if (frame) frame.style.transform = 'translate(' + (cx * 10).toFixed(1) + 'px,' + (cy * 8).toFixed(1) + 'px) scale(1.06)';
         requestAnimationFrame(ploop);
+      })();
+    }
+  }
+
+  // 6b) Eyes follow the cursor — the two pupil layers shift toward the mouse.
+  // Max shift ~3.5px horizontal / ~2px vertical in source pixels (the iris
+  // is ~12px in a ~21px eye opening), scaled by the rendered width. Pupils
+  // stay centered until the first mouse move (no jump on load), and stay
+  // centered on touch / reduced-motion (no cursor there).
+  if (finePointer && !reduced) {
+    const pupils = document.querySelectorAll('.pupil');
+    const portrait = document.querySelector('.hero-portrait');
+    if (pupils.length && portrait) {
+      let mx = 0, my = 0, cx = 0, cy = 0, seen = false;
+      window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; seen = true; });
+      (function eyeLoop() {
+        if (seen) {
+          const r = portrait.getBoundingClientRect();
+          const nx = Math.max(-1, Math.min(1, (mx - (r.left + r.width / 2)) / (r.width / 2)));
+          const ny = Math.max(-1, Math.min(1, (my - (r.top + r.height / 2)) / (r.height / 2)));
+          const s = r.width / 400;
+          const tx = nx * 3.5 * s, ty = ny * 2 * s;
+          cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+          const t = 'translate(' + cx.toFixed(2) + 'px,' + cy.toFixed(2) + 'px)';
+          pupils.forEach(p => { p.style.transform = t; });
+        }
+        requestAnimationFrame(eyeLoop);
       })();
     }
   }

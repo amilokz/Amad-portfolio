@@ -68,6 +68,19 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   default model OOM-killed the VM, the tiny 4.57MB u2netp worked). Hero now
   uses assets/img/portrait-cutout.png (400x400 RGBA, 123KB); About keeps the
   full JPG in its card. CSS mask is now only a gentle bottom fade.
+- Eyes follow the cursor (2026-11-21, Komil: eyes should look where the
+  cursor goes): the portrait is split into 3 layers — portrait-noeyes.png
+  (irises painted over with sampled sclera color) + pupil-l.png / pupil-r.png
+  (20x20 circular iris crops). Iris centers measured from upscaled eye crops:
+  left (168,149), right (230,148), iris ~12px in a ~21px eye opening. JS
+  (main.js 6b) lerps both pupils toward the cursor, max ~3.5px horizontal /
+  ~2px vertical in source pixels, scaled by rendered width; centered until
+  the first mouse move, and centered on touch / reduced-motion. The hero img
+  is square (1/1) so pupil % positions map exactly; parallax moved to the
+  .hero-portrait-wrap so base + pupils drift together. TEST NOTE: headless
+  Chrome reports NO pointer (fine=false, coarse=false), so the effect is
+  gated off there — verify with a matchMedia stub forcing pointer:fine
+  (/tmp/cdp-eyes2.mjs). Verified: left -4.26px, right +4.26px, up -2.44px.
 
 ## Run locally / deploy
 ```bash
