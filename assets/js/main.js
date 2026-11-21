@@ -180,10 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 6b) Eyes follow the cursor — the two pupil layers shift toward the mouse.
-  // Max shift ~3.5px horizontal / ~2px vertical in source pixels (the iris
-  // is ~12px in a ~21px eye opening), scaled by the rendered width. Pupils
-  // stay centered until the first mouse move (no jump on load), and stay
-  // centered on touch / reduced-motion (no cursor there).
+  // Source is 1254px; max shift in source pixels, scaled by rendered width.
+  // ASYMMETRIC (neon-eyeball portrait): he glances LEFT at the eyeball, so
+  // both irises already sit at the left edge of their openings — left shift
+  // is only 2px, right 11px, up 3px, down 5px. Pupils stay centered until
+  // the first mouse move (no jump on load), and stay centered on touch /
+  // reduced-motion (no cursor there).
   if (finePointer && !reduced) {
     const pupils = document.querySelectorAll('.pupil');
     const portrait = document.querySelector('.hero-portrait');
@@ -195,8 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const r = portrait.getBoundingClientRect();
           const nx = Math.max(-1, Math.min(1, (mx - (r.left + r.width / 2)) / (r.width / 2)));
           const ny = Math.max(-1, Math.min(1, (my - (r.top + r.height / 2)) / (r.height / 2)));
-          const s = r.width / 400;
-          const tx = nx * 3.5 * s, ty = ny * 2 * s;
+          const s = r.width / 1254;
+          const tx = (nx < 0 ? nx * 2 : nx * 11) * s, ty = (ny < 0 ? ny * 3 : ny * 5) * s;
           cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
           const t = 'translate(' + cx.toFixed(2) + 'px,' + cy.toFixed(2) + 'px)';
           pupils.forEach(p => { p.style.transform = t; });
