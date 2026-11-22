@@ -97,12 +97,15 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
 - HERO BANNER (2026-11-22, Komil: wide portfolio banner as the hero
   background, NO background removal, text over Amad's chest): the hero is
   now hero-banner.webp (1720x914 source, WebP q85, 66KB) full-bleed with
-  the headline + CTAs overlaid at the bottom, over his chest (his chin is
-  at ~43% of the image — content sized so its top clears the face: desktop
-  h1 top 399px vs chin 387px). Badge floats top-left; bottom shade keeps
-  text readable. Mobile (390px): the face is huge in the center crop, so
-  the hero is 1000px tall, h1 30px, and the roll-line + stats strip are
-  hidden (roles live on the About page too) — h1 top 544px vs chin 430px.
+  the headline + CTAs overlaid at the bottom, over his chest. Image
+  landmarks (measured): chin 393px (43%), neck skin ends / collar 535px
+  (58.5%). Komil's red-box target (2026-11-22): headline inside source
+  y 560-762 (the black shirt). Final desktop: hero 1020px, h1 58px max,
+  strip hidden (roles live on About too), tightened margins — measured
+  h1 636-818px vs box 625-850px, fully inside. Badge floats top-left;
+  bottom shade keeps text readable. Mobile (390px): the face is huge in
+  the center crop, so the hero is 1000px tall, h1 30px, and the roll-line
+  + stats strip are hidden — h1 top 556px vs chin 430px.
   NOTE: the cutout portrait + eyes-follow + tilt are PAUSED with this
   design (they only work on the cutout portrait); the layer files stay in
   assets/img/ so the old hero can come back in one commit. TEST NOTE:
