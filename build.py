@@ -126,9 +126,13 @@ def write(rel, html):
 # ---------------------------------------------------------------- HOME
 # Hero portrait: drop Amad's real photo at assets/img/portrait.jpg and rebuild —
 # it replaces the MA monogram automatically. Until then the monogram shows.
-# Hero uses the background-removed cutout (portrait-cutout.png, rembg u2netp)
-# so the photo is a clean cutout like the thebuildr reference — no card, no
-# green box. About keeps the full JPG inside its card.
+# HERO BANNER (2026-11-22, Komil: wide portfolio banner as the hero
+# background, NO background removal, text over Amad's chest): the hero now
+# uses assets/img/hero-banner.webp full-bleed with the headline + CTAs
+# overlaid at the bottom. The cutout portrait + eyes-follow + tilt layers
+# below are PAUSED (they only work on the cutout portrait) — the files stay
+# in assets/img/ so the old hero can come back in one commit. About keeps
+# the full JPG inside its card.
 _HAS_PORTRAIT = (ROOT / "assets" / "img" / "portrait.jpg").exists()
 _HAS_CUTOUT = (ROOT / "assets" / "img" / "portrait-cutout.png").exists()
 _HAS_NOEYES = (ROOT / "assets" / "img" / "portrait-noeyes.png").exists()
@@ -148,10 +152,8 @@ portrait_note = ('Photograph: Muhammad Amad.' if _HAS_PORTRAIT else 'Professiona
 about_portrait_inner = ('<img class="portrait-img" src="assets/img/portrait.jpg" alt="Muhammad Amad — portrait" style="width:100%;height:220px;object-fit:cover;border-radius:14px">' if _HAS_PORTRAIT else '<div class="monogram">MA</div>')
 about_portrait_note = ('Portrait: Muhammad Amad — LinkedIn profile photo for now; a professional portrait will replace it once he supplies one.' if _HAS_PORTRAIT else 'Professional portrait to be supplied by Amad.')
 home = f"""
-<section class="hero"><canvas id="hero-canvas"></canvas><div class="wrap hero-center">
-<span class="avail-badge anim-in"><i></i>Available for new projects</span>
+<section class="hero hero-banner"><img class="hero-bg" src="assets/img/hero-banner.webp" alt="Muhammad Amad — portfolio banner" fetchpriority="high"><div class="hero-shade" aria-hidden="true"></div><span class="avail-badge hero-badge anim-in"><i></i>Available for new projects</span><div class="wrap hero-center hero-overlay">
 <h1><span class="hl"><span>Designing <em>identities.</em></span></span><span class="hl"><span>Building <span class="outline">ideas.</span></span></span><span class="hl"><span>Empowering <em>creatives.</em></span></span></h1>
-<div class="hero-portrait-wrap"><div class="hero-portrait anim-in" style="animation-delay:.6s">{portrait_inner}</div></div>
 <p class="roll-line anim-in" style="animation-delay:.5s"><span class="roll-label">Designing</span> <span class="roll-words"><span class="roll-track"><span>Brand Identities</span><span>Packaging</span><span>Campaign Design</span><span>Creative Direction</span><span>Design Education</span><span>Brand Identities</span></span></span></p>
 <div class="hero-bottom anim-in" style="animation-delay:.7s">
 <div class="hero-intro"><p>Brand identity, packaging and campaigns — designed to stand out on the shelf and in the feed.</p><a class="btn btn-white" href="contact.html">Let’s talk <span aria-hidden="true">↗</span></a></div>
@@ -581,6 +583,23 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   +12px, below-center rotateX -1.81deg / +2.6px, pupils in sync. TEST NOTE:
   headless viewport is 1440x900 even with --window-size 1440,1100 — mouse
   dispatches above y=900 never reach the page (elementFromPoint null).
+- HERO BANNER (2026-11-22, Komil: wide portfolio banner as the hero
+  background, NO background removal, text over Amad's chest): the hero is
+  now hero-banner.webp (1720x914 source, WebP q85, 66KB) full-bleed with
+  the headline + CTAs overlaid at the bottom, over his chest (his chin is
+  at ~43% of the image — content sized so its top clears the face: desktop
+  h1 top 399px vs chin 387px). Badge floats top-left; bottom shade keeps
+  text readable. Mobile (390px): the face is huge in the center crop, so
+  the hero is 1000px tall, h1 30px, and the roll-line + stats strip are
+  hidden (roles live on the About page too) — h1 top 544px vs chin 430px.
+  NOTE: the cutout portrait + eyes-follow + tilt are PAUSED with this
+  design (they only work on the cutout portrait); the layer files stay in
+  assets/img/ so the old hero can come back in one commit. TEST NOTE:
+  headless FULL-PAGE screenshots (captureBeyondViewport) do NOT paint some
+  animated elements (the roll-line vanished in full-page but renders fine
+  in viewport captures) — always confirm animated elements with a viewport
+  screenshot. Also: Emulation.setDeviceMetricsOverride dies with the CDP
+  session — set metrics and eval in the same script run.
 
 ## Run locally / deploy
 ```bash

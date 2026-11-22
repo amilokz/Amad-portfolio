@@ -94,6 +94,23 @@ built from his 25-page brief (v1.0, 8 Nov 2026). Static site — no build step, 
   +12px, below-center rotateX -1.81deg / +2.6px, pupils in sync. TEST NOTE:
   headless viewport is 1440x900 even with --window-size 1440,1100 — mouse
   dispatches above y=900 never reach the page (elementFromPoint null).
+- HERO BANNER (2026-11-22, Komil: wide portfolio banner as the hero
+  background, NO background removal, text over Amad's chest): the hero is
+  now hero-banner.webp (1720x914 source, WebP q85, 66KB) full-bleed with
+  the headline + CTAs overlaid at the bottom, over his chest (his chin is
+  at ~43% of the image — content sized so its top clears the face: desktop
+  h1 top 399px vs chin 387px). Badge floats top-left; bottom shade keeps
+  text readable. Mobile (390px): the face is huge in the center crop, so
+  the hero is 1000px tall, h1 30px, and the roll-line + stats strip are
+  hidden (roles live on the About page too) — h1 top 544px vs chin 430px.
+  NOTE: the cutout portrait + eyes-follow + tilt are PAUSED with this
+  design (they only work on the cutout portrait); the layer files stay in
+  assets/img/ so the old hero can come back in one commit. TEST NOTE:
+  headless FULL-PAGE screenshots (captureBeyondViewport) do NOT paint some
+  animated elements (the roll-line vanished in full-page but renders fine
+  in viewport captures) — always confirm animated elements with a viewport
+  screenshot. Also: Emulation.setDeviceMetricsOverride dies with the CDP
+  session — set metrics and eval in the same script run.
 
 ## Run locally / deploy
 ```bash
